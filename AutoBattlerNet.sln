@@ -5,11 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishNet.Codegen.Cecil", "Fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishNet.Runtime", "FishNet.Runtime.csproj", "{5ef46c3d-64c2-bd2b-20ea-6718ab77dc7b}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{13a3eb64-d92d-fb4c-96f8-dfbfd7b056d6}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameKit.Dependencies", "GameKit.Dependencies.csproj", "{fbb46850-81a5-bfd5-a621-039d03df0070}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.FishNet.Codegen", "Unity.FishNet.Codegen.csproj", "{b3111904-367a-93a2-1803-b37dadcd5ac3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{13a3eb64-d92d-fb4c-96f8-dfbfd7b056d6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishNet.Demos", "FishNet.Demos.csproj", "{0e504686-f770-6b64-84bc-02126dc1d575}"
 EndProject
@@ -22,12 +22,12 @@ Global
 		{c67a7ed2-67db-e7aa-cf1e-a5af4b9f0654}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ef46c3d-64c2-bd2b-20ea-6718ab77dc7b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5ef46c3d-64c2-bd2b-20ea-6718ab77dc7b}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13a3eb64-d92d-fb4c-96f8-dfbfd7b056d6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13a3eb64-d92d-fb4c-96f8-dfbfd7b056d6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{fbb46850-81a5-bfd5-a621-039d03df0070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{fbb46850-81a5-bfd5-a621-039d03df0070}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{b3111904-367a-93a2-1803-b37dadcd5ac3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{b3111904-367a-93a2-1803-b37dadcd5ac3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13a3eb64-d92d-fb4c-96f8-dfbfd7b056d6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13a3eb64-d92d-fb4c-96f8-dfbfd7b056d6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0e504686-f770-6b64-84bc-02126dc1d575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0e504686-f770-6b64-84bc-02126dc1d575}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
