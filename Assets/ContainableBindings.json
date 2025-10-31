@@ -1,0 +1,19 @@
+{
+    "Version": 1,
+    "Containers": [
+        {
+            "Key": "Gameplay",
+            "Rows": [
+                {
+                    "InterfaceType": "Client.Gameplay.Camera.ICameraTargetProvider, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "InterfaceGuid": "ff46c654-ff75-478d-840c-ce9ad63d7084",
+                    "LifetimeDefault": "Scoped",
+                    "UseResolver": false,
+                    "ResolverType": "",
+                    "ImplementationType": "Client.Gameplay.Camera.CameraTargetProvider, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "LifetimeOverride": ""
+                }
+            ]
+        }
+    ]
+}
