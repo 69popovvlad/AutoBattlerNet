@@ -6,7 +6,7 @@ namespace Client.Gameplay.Character.Input
     {
         public Vector3 Move(float delta)
         {
-            return new Vector3(UnityEngine.Input.GetAxis("Horizontal"), UnityEngine.Input.GetAxis("Vertical"));
+            return new Vector3(UnityEngine.Input.GetAxis("Horizontal"), 0, UnityEngine.Input.GetAxis("Vertical"));
         }
     }
 }
