@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 6684806460957147277}
   - component: {fileID: 6143191222507154513}
   - component: {fileID: 1857181279412793621}
-  - component: {fileID: 4807343489679856520}
   - component: {fileID: 3629230913834095779}
+  - component: {fileID: 6250817866123711051}
   - component: {fileID: 7926116752300999580}
   m_Layer: 0
   m_Name: Character
@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 494d5f394cbb0a745880315ace5ce83d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,7 +141,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &6143191222507154513
 MonoBehaviour:
@@ -184,16 +184,25 @@ MonoBehaviour:
       time: -1
       value: 5
       inSlope: 0
-      outSlope: -2
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
+      time: 0.24491802
+      value: 3.3564749
+      inSlope: -2.919432
+      outSlope: -2.919432
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18712531
+      outWeight: 0.46643946
+    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: -2
-      outSlope: 0
+      inSlope: -0.5
+      outSlope: -0.5
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -213,6 +222,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 10
+      inSlope: -14.9
+      outSlope: -14.9
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 0.1
@@ -237,53 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d73c6ffd178472c98bc69de71cd79f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterMovement: {fileID: 6143191222507154513}
---- !u!114 &4807343489679856520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8937099794708561448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 255
-  _addedNetworkObject: {fileID: 3629230913834095779}
-  _networkObjectCache: {fileID: 0}
-  _componentConfiguration: 2
-  _synchronizeParent: 0
-  _packing:
-    Position: 1
-    Rotation: 1
-    Scale: 0
-  _useScaledTime: 1
-  _interpolation: 2
-  _extrapolation: 2
-  _enableTeleport: 0
-  _teleportThreshold: 1
-  _clientAuthoritative: 1
-  _sendToOwner: 1
-  _interval: 1
-  _synchronizePosition: 1
-  _positionSensitivity: 0.01
-  _positionSnapping:
-    X: 1
-    Y: 0
-    Z: 1
-  _synchronizeRotation: 1
-  _rotationSnapping:
-    X: 0
-    Y: 1
-    Z: 0
-  _synchronizeScale: 0
-  _scaleSensitivity: 0.001
-  _scaleSnapping:
-    X: 0
-    Y: 0
-    Z: 0
+  _playerNetworkInput: {fileID: 6250817866123711051}
 --- !u!114 &3629230913834095779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +274,9 @@ MonoBehaviour:
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
-  NetworkBehaviours: []
+  NetworkBehaviours:
+  - {fileID: 6250817866123711051}
+  - {fileID: 7926116752300999580}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -327,15 +301,37 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 65535
+  <PrefabId>k__BackingField: 5
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 8333260464396493110
   <SceneId>k__BackingField: 0
   SerializedTransformProperties:
-    Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 0}
-    Scale: {x: 0, y: 0, z: 0}
-    IsValid: 0
+    Position: {x: 0, y: 1, z: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+    IsValid: 1
+--- !u!114 &6250817866123711051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8937099794708561448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3126b940b34f7eaa9205986e4be3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 3629230913834095779}
+  _networkObjectCache: {fileID: 3629230913834095779}
+  nudgeThreshold: 0.05
+  snapThreshold: 0.5
+  nudgeVelFactor: 0.5
+  nudgePosFactor: 0.5
+  nudgeYawFactor: 0.5
+  _rider: {fileID: 6143191222507154513}
+  _sendingTargetFPS: 30
 --- !u!114 &7926116752300999580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a61dc30aa6a34849aadd6bc42ef63b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 3629230913834095779}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 3629230913834095779}
   _movementInputRouter: {fileID: 1857181279412793621}
