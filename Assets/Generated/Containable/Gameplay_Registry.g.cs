@@ -13,7 +13,7 @@ namespace Validosik.Core.Ioc.Generated
         {
             return new Binding[]
             {
-                new Binding(typeof(Client.Gameplay.Camera.ICameraTargetProvider), typeof(Client.Gameplay.Camera.CameraTargetProvider), ServiceLifetime.Scoped)
+                new Binding(typeof(global::Client.Gameplay.Camera.ICameraTargetProvider), typeof(global::Client.Gameplay.Camera.CameraTargetProvider), ServiceLifetime.Scoped)
             };
         }
     }

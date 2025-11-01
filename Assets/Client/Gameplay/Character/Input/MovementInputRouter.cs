@@ -1,4 +1,4 @@
-﻿using Calidosik.Client.Character.Rider;
+﻿using Validosik.Client.Character.Rider;
 using UnityEngine;
 
 namespace Client.Gameplay.Character.Input
