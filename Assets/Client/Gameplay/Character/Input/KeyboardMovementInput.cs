@@ -4,9 +4,9 @@ namespace Client.Gameplay.Character.Input
 {
     public class KeyboardMovementInput : IMovementInputHandler
     {
-        public Vector3 Move(float delta)
+        public Vector2 Read(float delta)
         {
-            return new Vector3(UnityEngine.Input.GetAxis("Horizontal"), 0, UnityEngine.Input.GetAxis("Vertical"));
+            return new Vector2(UnityEngine.Input.GetAxis("Horizontal"), UnityEngine.Input.GetAxis("Vertical"));
         }
     }
 }

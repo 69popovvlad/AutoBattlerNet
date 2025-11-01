@@ -4,9 +4,9 @@ namespace Client.Gameplay.Character.Input
 {
     public class NoOpMovementInput : IMovementInputHandler
     {
-        public Vector3 Move(float delta)
+        public Vector2 Read(float delta)
         {
-            return Vector3.zero;
+            return Vector2.zero;
         }
     }
 }

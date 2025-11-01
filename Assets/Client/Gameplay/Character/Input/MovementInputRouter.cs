@@ -1,12 +1,11 @@
-﻿using Validosik.Client.Character.Rider;
+﻿using Client.Gameplay.Network.Input;
 using UnityEngine;
 
 namespace Client.Gameplay.Character.Input
 {
     public class MovementInputRouter : MonoBehaviour
     {
-        [SerializeField] private GroundRider _characterMovement;
-
+        [SerializeField] private PlayerNetworkInput _playerNetworkInput;
         private IMovementInputHandler _movementInputHandler;
 
         public void Initialize(IMovementInputHandler handler)
@@ -21,7 +20,8 @@ namespace Client.Gameplay.Character.Input
                 return;
             }
 
-            _characterMovement.Move(_movementInputHandler.Move(Time.deltaTime));
+            var inputDirection = _movementInputHandler.Read(Time.deltaTime);
+            _playerNetworkInput.CaptureLocalInput(inputDirection, Time.deltaTime, 0);
         }
     }
 }
