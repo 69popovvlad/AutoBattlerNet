@@ -1,15 +1,15 @@
 ﻿using Client.Gameplay.Map;
+using Client.Gameplay.Movement;
 using Client.Gameplay.Network.Character;
 using Client.Gameplay.Npc.Network;
 using Client.Services.Injections;
 using UnityEngine;
-using Validosik.Client.Character.Rider;
 
 namespace Client.Gameplay.Npc
 {
     public class NpcSimAgent : MonoBehaviour, IChunkSimEntity, IStateProvider<NpcState>
     {
-        [SerializeField] private GroundRider _rider;
+        [SerializeField] private SimpleRider _rider;
         [SerializeField] private float _arriveStopDist = 0.3f;
 
         public uint Id { get; private set; }
@@ -32,6 +32,7 @@ namespace Client.Gameplay.Npc
             if (_characterContainer.TryGet(targetId, out var characterContext))
             {
                 _target = characterContext.transform;
+                _rider.SetLookTarget(_target);
             }
         }
 

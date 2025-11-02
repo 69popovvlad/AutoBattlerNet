@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿using Client.Gameplay.Movement;
+using UnityEngine;
 using Validosik.Client.Character;
-using Validosik.Client.Character.Rider;
 
 namespace Client.Gameplay.Npc.Network
 {
     public class NpcGhost : MonoBehaviour
     {
-        [SerializeField] private GroundRider _rider;
+        [SerializeField] private SimpleRider _rider;
 
         [Header("Smoothing")]
         [SerializeField, Tooltip("gentle pull to the state")]

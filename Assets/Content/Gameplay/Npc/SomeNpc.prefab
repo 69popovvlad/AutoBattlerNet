@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 702696057901230443}
   - component: {fileID: 1326553481063824977}
   - component: {fileID: 6684806460957147277}
-  - component: {fileID: 6143191222507154513}
+  - component: {fileID: 6497499889226692956}
   - component: {fileID: 3696233967653638326}
   - component: {fileID: 1763640570590226620}
   - component: {fileID: -5869356519047894991}
@@ -142,7 +142,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &6143191222507154513
+--- !u!114 &6497499889226692956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,97 +151,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8937099794708561448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14f4e9489a844903a35d22efc7df96b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d4bb56923644da9811e722bd3dc8c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _motorBody: {fileID: 6684806460957147277}
-  _rideHeight: 0.5
-  _rideSpringStrength: 2000
-  _rideSpringDamper: 0.1
-  _maxSpringForce: 300
-  _moveSpeed: 10
-  _maxSpeed: 10
-  _acceleration: 200
-  _airControlMultiplier: 0.25
-  _jumpForce: 0
-  _jumpCooldown: 0.2
-  _jumpAllowedDuration: 0.15
-  _jumpLinearDamping: 0.5
-  _jumpDampingIgnoreDuration: 0.15
-  _jumpGravityThreshold: 50
-  _fallGravityMultiplier: 6
-  _rayOffset: {x: 0, y: -0.9, z: 0}
-  _maxRayDistance: 0.6
-  _rayMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  _groundCheckDistance: 0.1
-  _accelDirectionCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -1
-      value: 5
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.24491802
-      value: 3.3564749
-      inSlope: -2.919432
-      outSlope: -2.919432
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.18712531
-      outWeight: 0.46643946
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -0.5
-      outSlope: -0.5
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _dampingCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 15
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 10
-      inSlope: -14.9
-      outSlope: -14.9
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0.1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _moveSpeed: 6
+  _accel: 30
+  _decel: 40
+  _maxSpeed: 8
+  _turnSpeed: 360
+  _lookTarget: {fileID: 0}
 --- !u!114 &3696233967653638326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449f7430ca3d4f70a8a4b429d5286a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rider: {fileID: 6143191222507154513}
+  _rider: {fileID: 6497499889226692956}
   _nudgeThreshold: 0.05
   _snapThreshold: 0.5
   _nudgeVelFactor: 0.5
@@ -286,5 +205,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2dd079da37f4ff69d42b84855e419fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rider: {fileID: 6143191222507154513}
+  _rider: {fileID: 6497499889226692956}
   _arriveStopDist: 0.3
