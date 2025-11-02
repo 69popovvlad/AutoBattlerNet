@@ -12,6 +12,15 @@
                     "ResolverType": "",
                     "ImplementationType": "Client.Gameplay.Camera.CameraTargetProvider, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                     "LifetimeOverride": ""
+                },
+                {
+                    "InterfaceType": "Client.Gameplay.Network.Character.ICharacterContainer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "InterfaceGuid": "ec9988f6-a8ad-4e17-b6ed-61aeb0f73745",
+                    "LifetimeDefault": "Scoped",
+                    "UseResolver": false,
+                    "ResolverType": "",
+                    "ImplementationType": "Client.Gameplay.Network.Character.CharacterContainer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "LifetimeOverride": ""
                 }
             ]
         }
