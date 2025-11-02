@@ -36,10 +36,8 @@ namespace Client.Gameplay
         {
             var chunkGrid = NpcAuthority.ChunkGrid;
             var chunkIndex = chunkGrid.ToIndexFromWorld(position.x, position.z);
-            var chunkPos = chunkGrid.FromIndex(chunkIndex);
-            var entities = chunkGrid.GetEntitiesInChunk(chunkPos.x, chunkPos.z);
+            var entities = chunkGrid.GetEntitiesInChunkByIndex(chunkIndex);
 
-            var nearestIndex = -1;
             nearestEntityId = 0;
             nearestEntityGhost = default;
             var bestDistance = float.MaxValue;
@@ -51,19 +49,18 @@ namespace Client.Gameplay
                     continue;
                 }
 
-                var distance = (ghost.transform.position - position).sqrMagnitude;
+                var distance = (position - ghost.transform.position).sqrMagnitude;
                 if (distance >= bestDistance)
                 {
                     continue;
                 }
 
-                nearestIndex = i;
                 bestDistance = distance;
                 nearestEntityId = entityId;
                 nearestEntityGhost = ghost;
             }
 
-            if (nearestIndex == -1 || nearestEntityGhost == null)
+            if (nearestEntityGhost == null)
             {
                 return false;
             }

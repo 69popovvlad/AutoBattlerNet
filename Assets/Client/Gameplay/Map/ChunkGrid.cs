@@ -155,6 +155,11 @@ namespace Client.Gameplay.Map
             return _chunks[index];
         }
 
+        public IReadOnlyList<uint> GetEntitiesInChunkByIndex(int index)
+        {
+            return _chunks[index];
+        }
+
         public bool TryGetChunkIndexOfEntity(uint entityId, out int chunkIndex)
         {
             if (_entityIndex.TryGetValue(entityId, out var meta))
