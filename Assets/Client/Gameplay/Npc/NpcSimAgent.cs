@@ -1,4 +1,5 @@
 ﻿using Client.Gameplay.Character;
+using Client.Gameplay.Health;
 using Client.Gameplay.Map;
 using Client.Gameplay.Movement;
 using Client.Gameplay.Npc.Network;
@@ -19,11 +20,13 @@ namespace Client.Gameplay.Npc
         private Transform _tr;
         private Transform _target;
         private ICharacterContainer _characterContainer;
+        private GameplayContextBehaviour _gameplayContext;
 
         private void Awake()
         {
             _tr = transform;
             _characterContainer = Ioc.Instance.Resolve<ICharacterContainer>();
+            _gameplayContext = GameplayContextBehaviour.Instance;
         }
 
         public void Init(in NpcSpawnData data)
@@ -73,6 +76,22 @@ namespace Client.Gameplay.Npc
                 Velocity = ks.Velocity,
                 Yaw = ks.Yaw
             };
+        }
+        
+        private void OnCollisionEnter(Collision other)
+        {
+            if (!other.transform.TryGetComponent<HealthController>(out var healthController))
+            {
+                return;
+            }
+
+            healthController.Damage(2);
+            if (healthController.IsDead)
+            {
+                // TODO: Player is dead
+            }
+
+            _gameplayContext.NpcSpawner.DespawnNpc(Id);
         }
     }
 }

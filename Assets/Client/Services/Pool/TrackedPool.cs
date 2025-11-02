@@ -7,6 +7,7 @@ namespace Client.Services.Pool
     {
         private readonly Dictionary<TKey, TValue> _spawned = new Dictionary<TKey, TValue>();
 
+        public int SpawnedCount => _spawned.Count;
         
         ///  Don't forget to use Register method
         public override TValue Rent() => base.Rent();

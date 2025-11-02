@@ -18,12 +18,14 @@ namespace Client.Gameplay.Npc.Network
         [SerializeField] private NpcAuthority _npcAuthority;
         [SerializeField] private NpcNetClient _npcNetClient;
 
-        private uint _nextId;
+        private readonly SyncVar<uint> _nextId = new SyncVar<uint>(0);
         private uint _nextSpawnPoint;
         private bool _isHost;
         private readonly SyncVar<float> _leftToSpawn = new SyncVar<float>(float.MaxValue);
         private ICharacterContainer _characterContainer;
 
+        public float TotalSpawned => _nextId.Value;
+        public float SpawnedCount => _pool.SpawnedCount;
         public float SpawnProgress => Mathf.Clamp((_spawnInterval - _leftToSpawn.Value) / _spawnInterval, 0, 1);
 
         private void Awake()
@@ -74,7 +76,7 @@ namespace Client.Gameplay.Npc.Network
             var randomSpawnPoint = Random.Range(0, _spawnPoints.Length);
             SpawnOnNetwork(new NpcSpawnData()
             {
-                Id = _nextId++,
+                Id = _nextId.Value++,
                 TargetId = targetContext.NetworkObject.ObjectId,
                 SpawnPoint = randomSpawnPoint,
                 Stats = randomStats,
