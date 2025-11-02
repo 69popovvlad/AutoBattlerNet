@@ -1,7 +1,7 @@
-﻿using FishNet.Connection;
+﻿using Client.Gameplay.Movement;
+using FishNet.Connection;
 using FishNet.Object;
 using UnityEngine;
-using Validosik.Client.Character;
 
 namespace Client.Gameplay.Network.Input
 {

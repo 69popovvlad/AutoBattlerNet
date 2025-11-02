@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
+using Client.Gameplay.Movement;
 using FishNet.Object;
 using UnityEngine;
-using Validosik.Client.Character.Rider;
 
 namespace Client.Gameplay.Network.Input
 {
     public partial class PlayerNetworkInput : NetworkBehaviour
     {
-        [SerializeField] private GroundRider _rider;
+        [SerializeField] private SimpleRider _rider;
 
         [SerializeField, Range(1, 120)] private int _sendingTargetFPS = 30;
 

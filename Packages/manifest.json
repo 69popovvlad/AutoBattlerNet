@@ -14,7 +14,6 @@
     "com.unity.toolchain.win-x86_64-linux-x86_64": "2.0.11",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.9.7",
-    "validosik.client.character": "https://github.com/Fur-Fighters-Frenzy/Client.Character.git#master",
     "validosik.core.ioc": "https://github.com/Fur-Fighters-Frenzy/Core.Ioc.git#master",
     "validosik.core.reflection": "https://github.com/Fur-Fighters-Frenzy/Core.Reflection.git#master",
     "com.unity.modules.accessibility": "1.0.0",

@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using Validosik.Client.Character;
 
 namespace Client.Gameplay.Movement
 {
-    public partial class SimpleRider : ICharacterKinematics
+    public partial class SimpleRider
     {
         public void ApplyInputStep(Vector2 direction, float delta)
         {

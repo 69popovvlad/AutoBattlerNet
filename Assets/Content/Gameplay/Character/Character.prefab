@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 702696057901230443}
   - component: {fileID: 1326553481063824977}
   - component: {fileID: 6684806460957147277}
-  - component: {fileID: 6143191222507154513}
   - component: {fileID: 1857181279412793621}
-  - component: {fileID: 3629230913834095779}
+  - component: {fileID: 4172380243529805847}
   - component: {fileID: 6250817866123711051}
+  - component: {fileID: 3629230913834095779}
   - component: {fileID: 7926116752300999580}
   m_Layer: 0
   m_Name: Character
@@ -143,106 +143,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &6143191222507154513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8937099794708561448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14f4e9489a844903a35d22efc7df96b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _motorBody: {fileID: 6684806460957147277}
-  _rideHeight: 0.5
-  _rideSpringStrength: 2000
-  _rideSpringDamper: 0.1
-  _maxSpringForce: 300
-  _moveSpeed: 10
-  _maxSpeed: 10
-  _acceleration: 200
-  _airControlMultiplier: 0.25
-  _jumpForce: 0
-  _jumpCooldown: 0.2
-  _jumpAllowedDuration: 0.15
-  _jumpLinearDamping: 0.5
-  _jumpDampingIgnoreDuration: 0.15
-  _jumpGravityThreshold: 50
-  _fallGravityMultiplier: 6
-  _rayOffset: {x: 0, y: -0.9, z: 0}
-  _maxRayDistance: 0.6
-  _rayMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  _groundCheckDistance: 0.1
-  _accelDirectionCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -1
-      value: 5
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.24491802
-      value: 3.3564749
-      inSlope: -2.919432
-      outSlope: -2.919432
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.18712531
-      outWeight: 0.46643946
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -0.5
-      outSlope: -0.5
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _dampingCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 15
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 10
-      inSlope: -14.9
-      outSlope: -14.9
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0.1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &1857181279412793621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +156,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerNetworkInput: {fileID: 6250817866123711051}
+--- !u!114 &4172380243529805847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8937099794708561448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4bb56923644da9811e722bd3dc8c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _motorBody: {fileID: 6684806460957147277}
+  _moveSpeed: 6
+  _accel: 30
+  _decel: 40
+  _maxSpeed: 8
+  _turnSpeed: 360
+  _lookTarget: {fileID: 0}
+--- !u!114 &6250817866123711051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8937099794708561448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3126b940b34f7eaa9205986e4be3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 3629230913834095779}
+  _networkObjectCache: {fileID: 3629230913834095779}
+  _nudgeThreshold: 0.05
+  _snapThreshold: 0.5
+  _nudgeVelFactor: 0.5
+  _nudgePosFactor: 0.5
+  _nudgeYawFactor: 0.5
+  _rider: {fileID: 4172380243529805847}
+  _sendingTargetFPS: 30
 --- !u!114 &3629230913834095779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,28 +251,6 @@ MonoBehaviour:
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     Scale: {x: 1, y: 1, z: 1}
     IsValid: 1
---- !u!114 &6250817866123711051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8937099794708561448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a3126b940b34f7eaa9205986e4be3e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 0
-  _addedNetworkObject: {fileID: 3629230913834095779}
-  _networkObjectCache: {fileID: 3629230913834095779}
-  nudgeThreshold: 0.05
-  snapThreshold: 0.5
-  nudgeVelFactor: 0.5
-  nudgePosFactor: 0.5
-  nudgeYawFactor: 0.5
-  _rider: {fileID: 6143191222507154513}
-  _sendingTargetFPS: 30
 --- !u!114 &7926116752300999580
 MonoBehaviour:
   m_ObjectHideFlags: 0

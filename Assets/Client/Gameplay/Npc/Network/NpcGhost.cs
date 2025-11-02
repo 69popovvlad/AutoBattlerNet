@@ -1,6 +1,5 @@
 ﻿using Client.Gameplay.Movement;
 using UnityEngine;
-using Validosik.Client.Character;
 
 namespace Client.Gameplay.Npc.Network
 {
