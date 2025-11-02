@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 3629230913834095779}
   - component: {fileID: 7926116752300999580}
   - component: {fileID: 3597969436662674385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,6 +219,7 @@ MonoBehaviour:
   NetworkBehaviours:
   - {fileID: 6250817866123711051}
   - {fileID: 7926116752300999580}
+  - {fileID: 3597969436662674385}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -280,8 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09181c71e50d4c05a77319bccf045563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 3629230913834095779}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 3629230913834095779}
   _characterContext: {fileID: 7926116752300999580}
   _cooldownDuration: 0.5
