@@ -972,11 +972,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80c6aa1e85b4f90b672ea00af0ff4ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 20
-  _height: 20
-  _minX: -10
-  _minZ: -10
-  _chunkSize: 10
+  _width: 10
+  _height: 10
+  _minX: -5
+  _minZ: -5
+  _chunkSize: 20
   _drawGizmos: 1
   _gridColor: {r: 0, g: 1, b: 0, a: 1}
   _drawLabels: 0
@@ -1802,11 +1802,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80c6aa1e85b4f90b672ea00af0ff4ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 20
-  _height: 20
-  _minX: -10
-  _minZ: -10
-  _chunkSize: 10
+  _width: 10
+  _height: 10
+  _minX: -5
+  _minZ: -5
+  _chunkSize: 20
   _drawGizmos: 1
   _gridColor: {r: 0, g: 1, b: 0, a: 1}
   _drawLabels: 0
