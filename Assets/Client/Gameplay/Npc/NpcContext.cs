@@ -49,6 +49,7 @@ namespace Client.Gameplay.Npc
         public void OnReturn()
         {
             gameObject.SetActive(false);
+            _healthController.Reset();
 
             _npcSimAgent.Deactivate();
         }

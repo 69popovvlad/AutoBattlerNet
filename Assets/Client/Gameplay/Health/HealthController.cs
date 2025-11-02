@@ -17,12 +17,18 @@ namespace Client.Gameplay.Health
         public void Init(uint EntityId)
         {
             Id = EntityId;
-            _currentHealth = _initialHealth;
+            Reset();
         }
 
         public virtual void SetMaxHealth(int maxHealth)
         {
-            _currentHealth = _initialHealth = maxHealth;
+            _initialHealth = maxHealth;
+            Reset();
+        }
+
+        public void Reset()
+        {
+            _currentHealth = _initialHealth;
         }
 
         public void Damage(int damage)
