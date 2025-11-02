@@ -177,6 +177,7 @@ MonoBehaviour:
   _npcSimAgent: {fileID: -5869356519047894991}
   _ghost: {fileID: 1763640570590226620}
   _healthController: {fileID: 3170644798484059873}
+  _meshRenderer: {fileID: 702696057901230443}
 --- !u!114 &1763640570590226620
 MonoBehaviour:
   m_ObjectHideFlags: 0

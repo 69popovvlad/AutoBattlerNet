@@ -2082,6 +2082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1410119256}
   - component: {fileID: 1410119255}
+  - component: {fileID: 1410119257}
   m_Layer: 0
   m_Name: GameplayContext
   m_TagString: Untagged
@@ -2104,6 +2105,7 @@ MonoBehaviour:
   NpcAuthority: {fileID: 1024153888}
   NpcNetClient: {fileID: 672922883}
   NpcSpawner: {fileID: 1725433939}
+  NpcMaterialHolder: {fileID: 1410119257}
   ProjectileSpawner: {fileID: 1761399837}
 --- !u!4 &1410119256
 Transform:
@@ -2120,6 +2122,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1410119257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410119254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8e2cd966014f9fa305cb530ad8790f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _materials:
+  - {fileID: 2100000, guid: eb2c6b7b552b9fe439ac0c3fc7134836, type: 2}
+  - {fileID: 2100000, guid: 685a129b57fa1fb429a56f77e25b305d, type: 2}
 --- !u!1 &1462875456
 GameObject:
   m_ObjectHideFlags: 0

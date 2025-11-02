@@ -1,5 +1,6 @@
 ﻿using Client.Gameplay.Character;
 using Client.Gameplay.Npc.Network;
+using Client.Gameplay.Npc.Views;
 using Client.Gameplay.Projectile.Network;
 using Client.Services.Injections;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Client.Gameplay
         public NpcAuthority NpcAuthority;
         public NpcNetClient NpcNetClient;
         public NpcSpawner NpcSpawner;
+        public NpcMaterialHolder NpcMaterialHolder;
         public ProjectileSpawner ProjectileSpawner;
 
         public ICharacterContainer CharacterContainer;
