@@ -26,14 +26,16 @@ namespace Client.Gameplay.Npc
             _characterContainer = Ioc.Instance.Resolve<ICharacterContainer>();
         }
 
-        public void Activate(uint id, int targetId)
+        public void Init(in NpcSpawnData data)
         {
-            Id = id;
-            if (_characterContainer.TryGet(targetId, out var characterContext))
+            Id = data.Id;
+            if (_characterContainer.TryGet(data.TargetId, out var characterContext))
             {
                 _target = characterContext.transform;
                 _rider.SetLookTarget(_target);
             }
+
+            _rider.ChangeSpeed(data.Stats.MoveSpeed, data.Stats.MaxSpeed);
         }
 
         public void Deactivate()

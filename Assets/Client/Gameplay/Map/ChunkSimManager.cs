@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Client.Gameplay.Map
@@ -110,7 +109,7 @@ namespace Client.Gameplay.Map
 
                 if (grid != null && !grid.TryMoveEntityAtWorld(entity.Id, entity.Position))
                 {
-                    throw new Exception($"ChunkSimManager: entity {entity.Id} is outside grid at {entity.Position}");
+                    return;
                 }
 
                 // Mark as dirty

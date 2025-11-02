@@ -84,14 +84,36 @@ namespace Client.Gameplay.Npc.Network
         private void SpawnOnNetwork(NpcSpawnData data)
         {
             var npc = _pool.Rent();
-            npc.SetStats(data.Stats);
+            npc.Init(data);
+            _pool.Register(npc);
 
             npc.TeleportToPoint(_spawnPoints[data.SpawnPoint].position);
 
-            npc.Activate(data.Id, data.TargetId);
-
             _npcAuthority.RegisterNpc(npc.NpcSimAgent);
             _npcNetClient.Register(npc.Id, npc.Ghost);
+        }
+
+        [Server]
+        public void DespawnNpc(uint npcId)
+        {
+            DespawnOnNetwork(new NpcDespawnData()
+            {
+                Id = npcId
+            });
+        }
+
+        [ObserversRpc]
+        private void DespawnOnNetwork(NpcDespawnData data)
+        {
+            if (!_pool.TryGetSpawned(data.Id, out var npc))
+            {
+                return;
+            }
+
+            _npcAuthority.UnregisterNpc(npc.NpcSimAgent);
+            _npcNetClient.Unregister(npc.Id);
+
+            _pool.Return(npc);
         }
     }
 }

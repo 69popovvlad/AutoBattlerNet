@@ -195,7 +195,7 @@ Transform:
   m_GameObject: {fileID: 114813931}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 58.7, y: 0, z: -59.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -213,7 +213,9 @@ GameObject:
   - component: {fileID: 127130149}
   - component: {fileID: 127130148}
   - component: {fileID: 127130147}
-  m_Layer: 0
+  - component: {fileID: 127130150}
+  - component: {fileID: 127130151}
+  m_Layer: 7
   m_Name: Wall_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,6 +311,46 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127130145}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &127130150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127130145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b305311b731940f0bb9099a1ecfb9e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialHealth: 2147483647
+--- !u!54 &127130151
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127130145}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &265691543
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +439,9 @@ GameObject:
   - component: {fileID: 282577493}
   - component: {fileID: 282577492}
   - component: {fileID: 282577491}
-  m_Layer: 0
+  - component: {fileID: 282577494}
+  - component: {fileID: 282577495}
+  m_Layer: 7
   m_Name: Wall_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,6 +537,46 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282577489}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &282577494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282577489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b305311b731940f0bb9099a1ecfb9e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialHealth: 2147483647
+--- !u!54 &282577495
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282577489}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &293369872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1458,9 @@ GameObject:
   - component: {fileID: 942356527}
   - component: {fileID: 942356526}
   - component: {fileID: 942356525}
-  m_Layer: 0
+  - component: {fileID: 942356528}
+  - component: {fileID: 942356529}
+  m_Layer: 7
   m_Name: Wall_000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1470,6 +1556,46 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942356523}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &942356528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942356523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b305311b731940f0bb9099a1ecfb9e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialHealth: 2147483647
+--- !u!54 &942356529
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942356523}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1024153886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,6 +2103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NpcAuthority: {fileID: 1024153888}
   NpcNetClient: {fileID: 672922883}
+  NpcSpawner: {fileID: 1725433939}
   ProjectileSpawner: {fileID: 1761399837}
 --- !u!4 &1410119256
 Transform:
@@ -2005,7 +2132,9 @@ GameObject:
   - component: {fileID: 1462875460}
   - component: {fileID: 1462875459}
   - component: {fileID: 1462875458}
-  m_Layer: 0
+  - component: {fileID: 1462875461}
+  - component: {fileID: 1462875462}
+  m_Layer: 7
   m_Name: Wall_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2101,6 +2230,46 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462875456}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1462875461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462875456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b305311b731940f0bb9099a1ecfb9e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialHealth: 2147483647
+--- !u!54 &1462875462
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462875456}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1483179398
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,8 +2392,14 @@ MonoBehaviour:
   _npcLimit: 50
   _spawnInterval: 1
   _stats:
-  - MoveSpeed: 5
-  - MoveSpeed: 15
+  - TypeId: 0
+    MoveSpeed: 6
+    MaxSpeed: 8
+    Health: 10
+  - TypeId: 1
+    MoveSpeed: 10
+    MaxSpeed: 14
+    Health: 4
   _spawnPoints:
   - {fileID: 1851911301}
   - {fileID: 2021371314}
@@ -2476,7 +2651,9 @@ MonoBehaviour:
   _spawnInterval: 1
   _stats:
   - TypeId: 0
+    Damage: 4
   - TypeId: 1
+    Damage: 2
   _npcAuthority: {fileID: 9461280}
   _npcNetClient: {fileID: 293369874}
 --- !u!4 &1761399838

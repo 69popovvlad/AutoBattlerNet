@@ -13,6 +13,7 @@ namespace Client.Gameplay
 
         public NpcAuthority NpcAuthority;
         public NpcNetClient NpcNetClient;
+        public NpcSpawner NpcSpawner;
         public ProjectileSpawner ProjectileSpawner;
 
         public ICharacterContainer CharacterContainer;

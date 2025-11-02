@@ -119,6 +119,12 @@ namespace Client.Gameplay.Movement
             _tr.rotation = Quaternion.RotateTowards(_tr.rotation, targetRot, maxStep);
         }
 
+        public void ChangeSpeed(float speed, float maxSpeed)
+        {
+            _moveSpeed = speed;
+            _maxSpeed = maxSpeed;
+        }
+
         public void Move(Vector3 direction)
         {
             direction.y = 0f;

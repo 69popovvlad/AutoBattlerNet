@@ -1,14 +1,15 @@
-﻿using Client.Gameplay.Character.Network;
+﻿using Client.Gameplay.Health;
 using Client.Gameplay.Npc.Network;
 using Client.Services.Pool;
 using UnityEngine;
 
 namespace Client.Gameplay.Npc
 {
-    public class NpcContext : MonoBehaviour, IPoolable
+    public class NpcContext : MonoBehaviour, IPoolable, IKeyed<uint>
     {
         [SerializeField] private NpcSimAgent _npcSimAgent;
         [SerializeField] private NpcGhost _ghost;
+        [SerializeField] private HealthController _healthController;
 
         private NpcStats _stats;
         private Transform Tr => _tr != null ? _tr : _tr = transform;
@@ -17,34 +18,34 @@ namespace Client.Gameplay.Npc
         public NpcSimAgent NpcSimAgent => _npcSimAgent;
         public NpcGhost Ghost => _ghost;
         public uint Id => _npcSimAgent.Id;
-        public NpcStats Stats => _stats;
+        public uint Key => Id;
 
-
-        internal void SetStats(in NpcStats stats)
+        internal void Init(in NpcSpawnData data)
         {
-            _stats = stats;
+            _npcSimAgent.Init(data);
+            _healthController.SetMaxHealth(data.Stats.Health);
+            _healthController.Init(data.Id);
+
+            switch (data.Stats.TypeId)
+            {
+                // TODO: change color or smth here
+            }
         }
 
         internal void TeleportToPoint(in Vector3 position) =>
             Tr.position = position;
-
-        internal void Activate(uint entityId, int targetId) =>
-            _npcSimAgent.Activate(entityId, targetId);
 
         public void OnRent()
         {
             gameObject.SetActive(true);
         }
 
+
         public void OnReturn()
         {
             gameObject.SetActive(false);
 
             _npcSimAgent.Deactivate();
-
-            // TODO: Unregister npc here
-            // NpcAuthority.UnregisterNpc(this);
-            // NpcNetClient.Unregister(Id);
         }
     }
 }

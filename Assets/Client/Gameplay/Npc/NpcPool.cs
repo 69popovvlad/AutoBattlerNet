@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Client.Gameplay.Npc
 {
-    public class NpcPool : Pool<NpcContext>
+    public class NpcPool : TrackedPool<uint, NpcContext>
     {
         [SerializeField] private NpcContext _prefab;
         [SerializeField] private Transform _poolRoot;

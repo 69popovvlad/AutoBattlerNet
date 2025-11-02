@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3696233967653638326}
   - component: {fileID: 1763640570590226620}
   - component: {fileID: -5869356519047894991}
+  - component: {fileID: 3170644798484059873}
   m_Layer: 7
   m_Name: SomeNpc
   m_TagString: Untagged
@@ -175,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npcSimAgent: {fileID: -5869356519047894991}
   _ghost: {fileID: 1763640570590226620}
+  _healthController: {fileID: 3170644798484059873}
 --- !u!114 &1763640570590226620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +209,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rider: {fileID: 6497499889226692956}
   _arriveStopDist: 0.3
+--- !u!114 &3170644798484059873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8937099794708561448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b305311b731940f0bb9099a1ecfb9e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialHealth: 10
