@@ -512,9 +512,6 @@
     <Reference Include="Mono.Cecil">
       <HintPath>C:\Projects\Unity\AutoBattlerNet\Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f\Mono.Cecil.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>C:\Projects\Unity\AutoBattlerNet\Library\PackageCache\com.handzlikchris.fastscriptreload@09f2535e2697\Plugins\Roslyn\2021+\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="FishNet.CodeAnalysis">
       <HintPath>C:\Projects\Unity\AutoBattlerNet\Assets\FishNet\Runtime\Plugins\CodeAnalysis\FishNet.CodeAnalysis.dll</HintPath>
     </Reference>
