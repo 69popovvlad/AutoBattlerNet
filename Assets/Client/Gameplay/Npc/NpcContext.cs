@@ -12,8 +12,6 @@ namespace Client.Gameplay.Npc
 
         private NpcStats _stats;
         private Transform Tr => _tr != null ? _tr : _tr = transform;
-
-        private CharacterContext _targetContext;
         private Transform _tr;
 
         public NpcSimAgent NpcSimAgent => _npcSimAgent;

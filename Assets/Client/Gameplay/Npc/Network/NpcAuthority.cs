@@ -1,12 +1,10 @@
 ﻿using Client.Gameplay.Map;
 using UnityEngine;
-using Validosik.Core.Ioc.Attributes;
 
 namespace Client.Gameplay.Npc.Network
 {
     [ExecuteAlways]
-    [ContainableServiceImplementation("5544f085-9cb5-412e-872e-4c8266131d4f", "e984b29c-5072-47dd-91bb-249988bbdb33")]
-    public class NpcAuthority : MonoBehaviour, INpcChunkHandler
+    public class NpcAuthority : MonoBehaviour
     {
         [SerializeField] private ChunkGridBehaviour gridBehaviour;
         [SerializeField] private ChunkSimManager<NpcState> _manager;
