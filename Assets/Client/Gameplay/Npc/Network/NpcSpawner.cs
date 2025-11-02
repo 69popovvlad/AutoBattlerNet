@@ -54,6 +54,11 @@ namespace Client.Gameplay.Npc.Network
                 return;
             }
 
+            if (_pool.SpawnedCount >= _npcLimit)
+            {
+                return;
+            }
+            
             _leftToSpawn.Value -= Time.deltaTime;
             if (_leftToSpawn.Value > 0)
             {
