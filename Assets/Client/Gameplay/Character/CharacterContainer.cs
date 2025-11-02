@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Client.Gameplay.Network.Character;
+using Client.Gameplay.Character.Network;
 using Validosik.Core.Ioc.Attributes;
 
 namespace Client.Gameplay.Character

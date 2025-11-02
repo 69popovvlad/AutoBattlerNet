@@ -1,7 +1,6 @@
 ﻿using Client.Gameplay.Character;
 using Client.Gameplay.Map;
 using Client.Gameplay.Movement;
-using Client.Gameplay.Network.Character;
 using Client.Gameplay.Npc.Network;
 using Client.Services.Injections;
 using UnityEngine;

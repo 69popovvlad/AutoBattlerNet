@@ -1,11 +1,10 @@
 ﻿using Client.Gameplay.Camera;
-using Client.Gameplay.Character;
 using Client.Gameplay.Character.Input;
 using Client.Services.Injections;
 using FishNet.Object;
 using UnityEngine;
 
-namespace Client.Gameplay.Network.Character
+namespace Client.Gameplay.Character.Network
 {
     public class CharacterContext : NetworkBehaviour
     {

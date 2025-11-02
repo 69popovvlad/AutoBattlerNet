@@ -1,4 +1,4 @@
-﻿using Client.Gameplay.Network.Character;
+﻿using Client.Gameplay.Character.Network;
 using FishNet.Object;
 using UnityEngine;
 
