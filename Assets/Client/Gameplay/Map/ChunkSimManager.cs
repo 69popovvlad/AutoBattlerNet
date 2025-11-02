@@ -109,7 +109,7 @@ namespace Client.Gameplay.Map
 
                 if (grid != null && !grid.TryMoveEntityAtWorld(entity.Id, entity.Position))
                 {
-                    return;
+                    continue;
                 }
 
                 // Mark as dirty
