@@ -14,7 +14,7 @@ namespace Validosik.Core.Ioc.Generated
             return new Binding[]
             {
                 new Binding(typeof(global::Client.Gameplay.Camera.ICameraTargetProvider), typeof(global::Client.Gameplay.Camera.CameraTargetProvider), ServiceLifetime.Scoped),
-                new Binding(typeof(global::Client.Gameplay.Network.Character.ICharacterContainer), typeof(global::Client.Gameplay.Network.Character.CharacterContainer), ServiceLifetime.Scoped)
+                new Binding(typeof(global::Client.Gameplay.Character.ICharacterContainer), typeof(global::Client.Gameplay.Character.CharacterContainer), ServiceLifetime.Scoped)
             };
         }
     }

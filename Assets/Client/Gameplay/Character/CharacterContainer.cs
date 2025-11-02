@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Client.Gameplay.Network.Character;
 using Validosik.Core.Ioc.Attributes;
 
-namespace Client.Gameplay.Network.Character
+namespace Client.Gameplay.Character
 {
     [ContainableServiceImplementation("ec9988f6-a8ad-4e17-b6ed-61aeb0f73745", "9982c958-2085-4142-b4ed-7f5b38dcedc8")]
     public class CharacterContainer : ICharacterContainer

@@ -1,4 +1,5 @@
 ﻿using Client.Gameplay.Camera;
+using Client.Gameplay.Character;
 using Client.Gameplay.Character.Input;
 using Client.Services.Injections;
 using FishNet.Object;

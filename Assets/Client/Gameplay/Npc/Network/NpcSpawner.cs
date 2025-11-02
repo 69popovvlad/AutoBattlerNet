@@ -1,4 +1,5 @@
-﻿using Client.Gameplay.Network.Character;
+﻿using Client.Gameplay.Character;
+using Client.Gameplay.Network.Character;
 using Client.Services.Injections;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
