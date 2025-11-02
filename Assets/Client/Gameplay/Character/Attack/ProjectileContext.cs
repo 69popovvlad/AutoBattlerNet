@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Client.Gameplay.Character.Attack
 {
-    public class ProjectileContext: MonoBehaviour, IPoolable
+    public class ProjectileContext : MonoBehaviour, IPoolable, IKeyed<uint>
     {
         [SerializeField] private ProjectileSimAgent _projectileSimAgent;
         [SerializeField] private ProjectileGhost _ghost;
@@ -16,11 +16,11 @@ namespace Client.Gameplay.Character.Attack
         public ProjectileSimAgent ProjectileSimAgent => _projectileSimAgent;
         public ProjectileGhost Ghost => _ghost;
         public uint Id => _projectileSimAgent.Id;
-
+        public uint Key => Id;
 
         internal void Init(in ProjectileSpawnData data, CharacterContext characterContext)
         {
-            _projectileSimAgent.Init(data);
+            _projectileSimAgent.Init(data, this);
 
             TeleportToPoint(characterContext.transform.position);
         }
@@ -38,10 +38,6 @@ namespace Client.Gameplay.Character.Attack
             gameObject.SetActive(false);
 
             _projectileSimAgent.Deactivate();
-
-            // TODO: Unregister projectile here
-            // ProjectileAuthority.UnregisterProjectile(this);
-            // ProjectileNetClient.Unregister(Id);
         }
     }
 }

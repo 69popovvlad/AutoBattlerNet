@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Client.Gameplay.Character.Attack
 {
-    public class ProjectilePool : Pool<ProjectileContext>
+    public class ProjectilePool : TrackedPool<uint, ProjectileContext>
     {
         [SerializeField] private ProjectileContext _prefab;
         [SerializeField] private Transform _poolRoot;

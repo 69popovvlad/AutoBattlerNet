@@ -1,7 +1,7 @@
 ﻿using Client.Gameplay.Character.Attack.Network;
+using Client.Gameplay.Health;
 using Client.Gameplay.Map;
 using Client.Gameplay.Movement;
-using Client.Gameplay.Npc.Network;
 using UnityEngine;
 
 namespace Client.Gameplay.Character.Attack
@@ -9,28 +9,34 @@ namespace Client.Gameplay.Character.Attack
     public class ProjectileSimAgent : MonoBehaviour, IChunkSimEntity, IStateProvider<ProjectileState>
     {
         [SerializeField] private SimpleRider _rider;
-        [SerializeField] private float _arriveStopDist = 0.3f;
+        [SerializeField] private float _arriveStopDist = 0.02f;
         [SerializeField] private TrailRenderer _trailRenderer;
-
-        public uint Id { get; private set; }
-        public bool IsActive => gameObject.activeInHierarchy;
-        public Vector3 Position => transform.position;
 
         private Transform _tr;
         private Transform _target;
         private Vector3 _initDirection;
-        private NpcNetClient _npcNetClient;
+        private GameplayContextBehaviour _gameplayContext;
+        private int _damage;
+
+        public uint Id { get; private set; }
+        public bool IsActive => gameObject.activeInHierarchy;
+        public Vector3 Position => transform.position;
+        public ProjectileContext ProjectileContext { get; private set; }
+
 
         private void Awake()
         {
             _tr = transform;
-            _npcNetClient = GameplayContextBehaviour.Instance.NpcNetClient;
+            _gameplayContext = GameplayContextBehaviour.Instance;
         }
 
-        public void Init(in ProjectileSpawnData data)
+        public void Init(in ProjectileSpawnData data, ProjectileContext context)
         {
             Id = data.Id;
-            _initDirection = new Vector3(data.Direction.x, 0, data.Direction.y);
+            ProjectileContext = context;
+
+            _initDirection = new Vector3(data.Direction.x, 0, data.Direction.y).normalized;
+            _damage = data.Stats.Damage;
 
             switch (data.Stats.TypeId)
             {
@@ -41,7 +47,7 @@ namespace Client.Gameplay.Character.Attack
                 case 1:
                     _trailRenderer.enabled = true;
 
-                    if (_npcNetClient.TryGetGhost(data.TargetId, out var characterContext))
+                    if (_gameplayContext.NpcNetClient.TryGetGhost(data.TargetId, out var characterContext))
                     {
                         _target = characterContext.transform;
                     }
@@ -53,6 +59,7 @@ namespace Client.Gameplay.Character.Attack
         public void Deactivate()
         {
             _target = null;
+            _trailRenderer.Clear();
         }
 
         public void Simulate(float delta)
@@ -85,6 +92,21 @@ namespace Client.Gameplay.Character.Attack
                 Velocity = ks.Velocity,
                 Yaw = ks.Yaw
             };
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (!other.transform.TryGetComponent<HealthController>(out var healthController))
+            {
+                return;
+            }
+
+            healthController.Damage(_damage);
+            if (healthController.IsDead)
+            {
+                _gameplayContext.NpcSpawner.DespawnNpc(healthController.Id);
+            }
+            _gameplayContext.ProjectileSpawner.DespawnProjectile(Id);
         }
     }
 }

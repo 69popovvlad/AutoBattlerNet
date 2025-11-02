@@ -57,9 +57,33 @@ namespace Client.Gameplay.Character.Attack.Network
 
             var projectile = _pool.Rent();
             projectile.Init(data, characterContext);
+            _pool.Register(projectile);
 
             _npcAuthority.RegisterProjectile(projectile.ProjectileSimAgent);
             _npcNetClient.Register(projectile.Id, projectile.Ghost);
+        }
+
+        [Server]
+        public void DespawnProjectile(uint projectileId)
+        {
+            DespawnOnNetwork(new ProjectileDespawnData()
+            {
+                Id = projectileId
+            });
+        }
+
+        [ObserversRpc]
+        private void DespawnOnNetwork(ProjectileDespawnData data)
+        {
+            if (!_pool.TryGetSpawned(data.Id, out var projectile))
+            {
+                return;
+            }
+
+            _npcAuthority.UnregisterProjectile(projectile.ProjectileSimAgent);
+            _npcNetClient.Unregister(projectile.Id);
+
+            _pool.Return(projectile);
         }
     }
 }

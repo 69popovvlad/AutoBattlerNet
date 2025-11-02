@@ -6,5 +6,6 @@ namespace Client.Gameplay.Character.Attack
     public struct ProjectileStats
     {
         public ushort TypeId;
+        public int Damage;
     }
 }
