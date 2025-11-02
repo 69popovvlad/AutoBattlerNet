@@ -56,7 +56,7 @@ namespace Client.Gameplay.Character
         private void Fire()
         {
             var position = Tr.position;
-            if (!_gameplayContext.TryFindNearestEnemy(position, out var nearestEntityId, out var nearestEntityGhost))
+            if (!_gameplayContext.TryFindNearestEnemy(position, out var nearestEntityId, out var nearestEntity))
             {
                 return;
             }

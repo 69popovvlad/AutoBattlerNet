@@ -14,7 +14,7 @@ namespace Client.Gameplay.Projectile
 
         private Transform _tr;
         private Transform _target;
-        private Vector3 _initDirection;
+        private Vector2 _initDirection;
         private GameplayContextBehaviour _gameplayContext;
         private int _damage;
         private float _leftToDestroy;
@@ -41,7 +41,7 @@ namespace Client.Gameplay.Projectile
             _rider.ChangeSpeed(data.Stats.Speed, data.Stats.MaxSpeed);
 
             Transform target = default;
-            if (_gameplayContext.NpcNetClient.TryGetGhost(data.TargetId, out var npc))
+            if (_gameplayContext.NpcSpawner.TryGetSpawned(data.TargetId, out var npc))
             {
                 target = npc.transform;
 
@@ -57,6 +57,7 @@ namespace Client.Gameplay.Projectile
             {
                 case 0:
                     _trailRenderer.enabled = false;
+                    _target = null;
                     break;
 
                 case 1:
@@ -70,7 +71,7 @@ namespace Client.Gameplay.Projectile
         {
             _target = null;
             _trailRenderer.Clear();
-            _initDirection = Vector3.zero;
+            _initDirection = Vector2.zero;
             _leftToDestroy = _autoDestroyDelay;
             _rider.ApplyInputStep(_initDirection, 1f);
             _rider.Reset();
@@ -106,7 +107,7 @@ namespace Client.Gameplay.Projectile
             };
         }
 
-        private Vector3 CalculateDirection(Transform target)
+        private Vector2 CalculateDirection(Transform target)
         {
             var toTarget = target.position - _tr.position;
             var flat = new Vector2(toTarget.x, toTarget.z);

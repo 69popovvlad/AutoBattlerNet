@@ -1,15 +1,17 @@
 ﻿using Client.Gameplay.Character;
 using Client.Gameplay.Character.Ui;
+using Client.Gameplay.Npc;
 using Client.Gameplay.Npc.Network;
 using Client.Gameplay.Npc.Views;
 using Client.Gameplay.Projectile.Network;
 using Client.Services.Injections;
+using FishNet.Object;
 using UnityEngine;
 
 namespace Client.Gameplay
 {
     [DefaultExecutionOrder(-1000)]
-    public class GameplayContextBehaviour : MonoBehaviour
+    public class GameplayContextBehaviour : NetworkBehaviour
     {
         public static GameplayContextBehaviour Instance { get; private set; }
 
@@ -20,7 +22,7 @@ namespace Client.Gameplay
         public ProjectileSpawner ProjectileSpawner;
 
         public CharacterDamageFlasher CharacterDamageFlasher;
-        
+
         public ICharacterContainer CharacterContainer;
 
         private void Awake()
@@ -35,24 +37,24 @@ namespace Client.Gameplay
             CharacterContainer = Ioc.Instance.Resolve<ICharacterContainer>();
         }
 
-        public bool TryFindNearestEnemy(in Vector3 position, out uint nearestEntityId, out NpcGhost nearestEntityGhost)
+        public bool TryFindNearestEnemy(in Vector3 position, out uint nearestEntityId, out NpcContext nearestEntity)
         {
             var chunkGrid = NpcAuthority.ChunkGrid;
             var chunkIndex = chunkGrid.ToIndexFromWorld(position.x, position.z);
             var entities = chunkGrid.GetEntitiesInChunkByIndex(chunkIndex);
 
             nearestEntityId = 0;
-            nearestEntityGhost = default;
+            nearestEntity = default;
             var bestDistance = float.MaxValue;
             for (var i = 0; i < entities.Count; ++i)
             {
                 var entityId = entities[i];
-                if (!NpcNetClient.TryGetGhost(entityId, out var ghost))
+                if (!NpcSpawner.TryGetSpawned(entityId, out var entity))
                 {
                     continue;
                 }
 
-                var distance = (position - ghost.transform.position).sqrMagnitude;
+                var distance = (position - entity.transform.position).sqrMagnitude;
                 if (distance >= bestDistance)
                 {
                     continue;
@@ -60,10 +62,10 @@ namespace Client.Gameplay
 
                 bestDistance = distance;
                 nearestEntityId = entityId;
-                nearestEntityGhost = ghost;
+                nearestEntity = entity;
             }
 
-            if (nearestEntityGhost == null)
+            if (nearestEntity == null)
             {
                 return false;
             }

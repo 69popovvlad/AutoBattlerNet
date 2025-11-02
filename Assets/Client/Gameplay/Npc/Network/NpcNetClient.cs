@@ -31,8 +31,5 @@ namespace Client.Gameplay.Npc.Network
                 }
             }
         }
-
-        public bool TryGetGhost(uint entityId, out NpcGhost ghost) =>
-            _byId.TryGetValue(entityId, out ghost);
     }
 }

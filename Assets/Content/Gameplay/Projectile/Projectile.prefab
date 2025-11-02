@@ -192,7 +192,7 @@ MonoBehaviour:
   _accel: 30
   _decel: 40
   _maxSpeed: 8
-  _turnSpeed: 3600
+  _turnSpeed: 360
   _lookTarget: {fileID: 0}
 --- !u!114 &7716487665067667958
 MonoBehaviour:
@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rider: {fileID: 4687533253327537894}
-  _arriveStopDist: 0.01
   _trailRenderer: {fileID: 5733249252982474791}
+  _autoDestroyDelay: 3
 --- !u!1 &6703115941929747877
 GameObject:
   m_ObjectHideFlags: 0

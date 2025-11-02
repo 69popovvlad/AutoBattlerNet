@@ -27,7 +27,10 @@ namespace Client.Gameplay.Npc.Network
         public float TotalSpawned => _nextId.Value;
         public float SpawnedCount => _pool.SpawnedCount;
         public float SpawnProgress => Mathf.Clamp((_spawnInterval - _leftToSpawn.Value) / _spawnInterval, 0, 1);
-
+        
+        public bool TryGetSpawned(uint key, out NpcContext value) =>
+            _pool.TryGetSpawned(key, out value);
+        
         private void Awake()
         {
             _leftToSpawn.Value = _spawnInterval;
@@ -58,7 +61,7 @@ namespace Client.Gameplay.Npc.Network
             {
                 return;
             }
-            
+
             _leftToSpawn.Value -= Time.deltaTime;
             if (_leftToSpawn.Value > 0)
             {
@@ -97,8 +100,14 @@ namespace Client.Gameplay.Npc.Network
 
             npc.TeleportToPoint(_spawnPoints[data.SpawnPoint].position);
 
-            _npcAuthority.RegisterNpc(npc.NpcSimAgent);
-            _npcNetClient.Register(npc.Id, npc.Ghost);
+            if (_isHost)
+            {
+                _npcAuthority.RegisterNpc(npc.NpcSimAgent);
+            }
+            else
+            {
+                _npcNetClient.Register(npc.Id, npc.Ghost);
+            }
         }
 
         [Server(Logging = LoggingType.Off)]
@@ -118,8 +127,14 @@ namespace Client.Gameplay.Npc.Network
                 return;
             }
 
-            _npcAuthority.UnregisterNpc(npc.NpcSimAgent);
-            _npcNetClient.Unregister(npc.Id);
+            if (_isHost)
+            {
+                _npcAuthority.UnregisterNpc(npc.NpcSimAgent);
+            }
+            else
+            {
+                _npcNetClient.Unregister(npc.Id);
+            }
 
             _pool.Return(npc);
         }

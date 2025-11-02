@@ -20,8 +20,12 @@ namespace Client.Gameplay.Projectile.Network
         private uint _nextSpawnPoint;
 
         private ICharacterContainer _characterContainer;
+        private bool _isHost;
 
         public float SpawnProgress => Mathf.Clamp((_spawnInterval - _leftToSpawn.Value) / _spawnInterval, 0, 1);
+
+        public bool TryGetSpawned(uint key, out ProjectileContext value) =>
+            _pool.TryGetSpawned(key, out value);
 
         private void Awake()
         {
@@ -32,6 +36,13 @@ namespace Client.Gameplay.Projectile.Network
         private void Start()
         {
             _pool.Prewarm(32);
+        }
+
+        public override void OnStartNetwork()
+        {
+            base.OnStartNetwork();
+
+            _isHost = IsServerInitialized;
         }
 
         [Server(Logging = LoggingType.Off)]
@@ -60,8 +71,15 @@ namespace Client.Gameplay.Projectile.Network
             projectile.Init(data, characterContext);
             _pool.Register(projectile);
 
-            _npcAuthority.RegisterProjectile(projectile.ProjectileSimAgent);
-            _npcNetClient.Register(projectile.Id, projectile.Ghost);
+
+            if (_isHost)
+            {
+                _npcAuthority.RegisterProjectile(projectile.ProjectileSimAgent);
+            }
+            else
+            {
+                _npcNetClient.Register(projectile.Id, projectile.Ghost);
+            }
         }
 
         [Server(Logging = LoggingType.Off)]
@@ -81,8 +99,14 @@ namespace Client.Gameplay.Projectile.Network
                 return;
             }
 
-            _npcAuthority.UnregisterProjectile(projectile.ProjectileSimAgent);
-            _npcNetClient.Unregister(projectile.Id);
+            if (_isHost)
+            {
+                _npcAuthority.UnregisterProjectile(projectile.ProjectileSimAgent);
+            }
+            else
+            {
+                _npcNetClient.Unregister(projectile.Id);
+            }
 
             _pool.Return(projectile);
         }

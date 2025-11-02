@@ -86,9 +86,9 @@ namespace Client.Gameplay.Network.Input
         private void UpdateLookAt()
         {
             if (_gameplayContext.TryFindNearestEnemy(_tr.position, out var _,
-                    out var nearestEntityGhost))
+                    out var nearestEntity))
             {
-                _rider.SetLookTarget(nearestEntityGhost.transform);
+                _rider.SetLookTarget(nearestEntity.transform);
             }
             else
             {

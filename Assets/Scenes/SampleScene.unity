@@ -2169,7 +2169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simTargetFPS: 30
-  _sendTargetFPS: 20
+  _sendTargetFPS: 30
   _gridBehaviour: {fileID: 426329126}
 --- !u!1 &1265579656
 GameObject:
@@ -2370,6 +2370,7 @@ GameObject:
   - component: {fileID: 1410119256}
   - component: {fileID: 1410119255}
   - component: {fileID: 1410119257}
+  - component: {fileID: 1410119258}
   m_Layer: 0
   m_Name: GameplayContext
   m_TagString: Untagged
@@ -2389,6 +2390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1eb407512f64a019da5a44e256f55c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1410119258}
+  _networkObjectCache: {fileID: 0}
   NpcAuthority: {fileID: 1024153888}
   NpcNetClient: {fileID: 672922883}
   NpcSpawner: {fileID: 1725433939}
@@ -2425,6 +2429,58 @@ MonoBehaviour:
   _materials:
   - {fileID: 2100000, guid: eb2c6b7b552b9fe439ac0c3fc7134836, type: 2}
   - {fileID: 2100000, guid: 685a129b57fa1fb429a56f77e25b305d, type: 2}
+--- !u!114 &1410119258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410119254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  WasActiveDuringEdit: 1
+  WasActiveDuringEdit_Set1: 1
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  <PredictedOwner>k__BackingField: {fileID: 0}
+  NetworkBehaviours: []
+  InitializedParentNetworkBehaviour: {fileID: 0}
+  InitializedNestedNetworkObjects: []
+  RuntimeParentNetworkBehaviour: {fileID: 0}
+  RuntimeChildNetworkBehaviours: []
+  _isNetworked: 1
+  _isSpawnable: 1
+  _isGlobal: 0
+  _initializeOrder: 0
+  _preventDespawnOnDisconnect: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  _enablePrediction: 0
+  _predictionType: 0
+  _graphicalObject: {fileID: 0}
+  _detachGraphicalObject: 0
+  _enableStateForwarding: 1
+  _networkTransform: {fileID: 0}
+  _ownerInterpolation: 1
+  _ownerSmoothedProperties: 255
+  _adaptiveInterpolation: 3
+  _spectatorSmoothedProperties: 255
+  _spectatorInterpolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  <PrefabId>k__BackingField: 65535
+  <SpawnableCollectionId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 0
+  <SceneId>k__BackingField: 3220166503
+  SerializedTransformProperties:
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 0}
+    Scale: {x: 0, y: 0, z: 0}
+    IsValid: 0
 --- !u!1 &1440712340
 GameObject:
   m_ObjectHideFlags: 0
@@ -3259,7 +3315,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 0}
   _pool: {fileID: 1725433940}
   _npcLimit: 20
-  _spawnInterval: 1
+  _spawnInterval: 0.25
   _stats:
   - TypeId: 0
     MoveSpeed: 6
@@ -3697,7 +3753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simTargetFPS: 30
-  _sendTargetFPS: 20
+  _sendTargetFPS: 30
   _gridBehaviour: {fileID: 1265579658}
 --- !u!224 &1944736352 stripped
 RectTransform:
