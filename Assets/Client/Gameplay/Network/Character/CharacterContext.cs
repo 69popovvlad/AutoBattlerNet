@@ -15,6 +15,8 @@ namespace Client.Gameplay.Network.Character
         {
             base.OnStartClient();
 
+            Ioc.Instance.Resolve<ICharacterContainer>().TryAdd(this);
+
             if (IsOwner)
             {
                 _movementInputRouter.Initialize(new KeyboardMovementInput());
@@ -26,6 +28,13 @@ namespace Client.Gameplay.Network.Character
             {
                 _movementInputRouter.Initialize(new NoOpMovementInput());
             }
+        }
+
+        public override void OnStopClient()
+        {
+            base.OnStopClient();
+
+            Ioc.Instance.Resolve<ICharacterContainer>().Remove(this);
         }
     }
 }

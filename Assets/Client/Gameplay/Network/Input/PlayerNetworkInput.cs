@@ -28,7 +28,7 @@ namespace Client.Gameplay.Network.Input
         {
             base.OnStartNetwork();
             
-            _isHost = IsServerInitialized && IsClientInitialized;
+            _isHost = IsServerInitialized;
         }
 
         public void CaptureLocalInput(Vector2 direction, float dt, byte flags)
