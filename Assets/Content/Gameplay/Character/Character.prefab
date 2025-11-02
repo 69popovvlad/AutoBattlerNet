@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6250817866123711051}
   - component: {fileID: 3629230913834095779}
   - component: {fileID: 7926116752300999580}
+  - component: {fileID: 3597969436662674385}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -267,3 +268,20 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 3629230913834095779}
   _networkObjectCache: {fileID: 3629230913834095779}
   _movementInputRouter: {fileID: 1857181279412793621}
+--- !u!114 &3597969436662674385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8937099794708561448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09181c71e50d4c05a77319bccf045563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 3629230913834095779}
+  _networkObjectCache: {fileID: 0}
+  _characterContext: {fileID: 7926116752300999580}
+  _cooldownDuration: 0.5
