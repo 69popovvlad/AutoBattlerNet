@@ -87,7 +87,6 @@ namespace Client.Gameplay.Npc.Network
             npc.SetStats(data.Stats);
 
             npc.TeleportToPoint(_spawnPoints[data.SpawnPoint].position);
-            npc.transform.SetParent(null);
 
             npc.Activate(data.Id, data.TargetId);
 

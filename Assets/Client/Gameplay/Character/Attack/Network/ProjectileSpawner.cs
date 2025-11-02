@@ -56,7 +56,6 @@ namespace Client.Gameplay.Character.Attack.Network
             }
 
             var projectile = _pool.Rent();
-            transform.SetParent(null);
             projectile.Init(data, characterContext);
 
             _npcAuthority.RegisterProjectile(projectile.ProjectileSimAgent);
