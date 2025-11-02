@@ -1,4 +1,5 @@
 ﻿using Client.Gameplay.Character;
+using Client.Gameplay.Character.Ui;
 using Client.Gameplay.Npc.Network;
 using Client.Gameplay.Npc.Views;
 using Client.Gameplay.Projectile.Network;
@@ -18,6 +19,8 @@ namespace Client.Gameplay
         public NpcMaterialHolder NpcMaterialHolder;
         public ProjectileSpawner ProjectileSpawner;
 
+        public CharacterDamageFlasher CharacterDamageFlasher;
+        
         public ICharacterContainer CharacterContainer;
 
         private void Awake()

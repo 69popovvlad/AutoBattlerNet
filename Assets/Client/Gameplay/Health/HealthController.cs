@@ -9,6 +9,7 @@ namespace Client.Gameplay.Health
 
         private int _currentHealth;
 
+        public event Action<int> OnDamaged;
         public event Action<uint> OnDead;
 
         public uint Id { get; private set; }
@@ -39,6 +40,8 @@ namespace Client.Gameplay.Health
             }
 
             _currentHealth -= damage;
+            OnDamaged?.Invoke(damage);
+
             if (_currentHealth > 0)
             {
                 return;
