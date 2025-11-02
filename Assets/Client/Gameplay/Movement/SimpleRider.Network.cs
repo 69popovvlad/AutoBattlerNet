@@ -4,7 +4,7 @@ namespace Client.Gameplay.Movement
 {
     public partial class SimpleRider
     {
-        public void ApplyInputStep(Vector2 direction, float delta)
+        public void ApplyInputStep(in Vector2 direction, float delta)
         {
             var v = new Vector3(direction.x, 0f, direction.y);
             _moveInput = Vector3.ClampMagnitude(v, 1f);
