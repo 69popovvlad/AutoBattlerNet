@@ -1,5 +1,6 @@
 ﻿using Client.Gameplay.Character;
 using Client.Services.Injections;
+using FishNet.Managing.Logging;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine;
@@ -64,7 +65,7 @@ namespace Client.Gameplay.Projectile.Network
             _npcNetClient.Register(projectile.Id, projectile.Ghost);
         }
 
-        [Server]
+        [Server(Logging = LoggingType.Off)]
         public void DespawnProjectile(uint projectileId)
         {
             DespawnOnNetwork(new ProjectileDespawnData()

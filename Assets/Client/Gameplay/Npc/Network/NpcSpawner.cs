@@ -1,5 +1,6 @@
 ﻿using Client.Gameplay.Character;
 using Client.Services.Injections;
+using FishNet.Managing.Logging;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine;
@@ -61,7 +62,7 @@ namespace Client.Gameplay.Npc.Network
             _leftToSpawn.Value = _spawnInterval;
         }
 
-        [Server]
+        [Server(Logging = LoggingType.Off)]
         private void SpawnRandomNpc()
         {
             if (!_characterContainer.TryGetRandom(out var targetContext))
@@ -93,7 +94,7 @@ namespace Client.Gameplay.Npc.Network
             _npcNetClient.Register(npc.Id, npc.Ghost);
         }
 
-        [Server]
+        [Server(Logging = LoggingType.Off)]
         public void DespawnNpc(uint npcId)
         {
             DespawnOnNetwork(new NpcDespawnData()
