@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Client.Gameplay.Character.Attack
+namespace Client.Gameplay.Projectile
 {
     [Serializable]
     public struct ProjectileStats

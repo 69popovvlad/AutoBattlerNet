@@ -1,10 +1,10 @@
-﻿using Client.Gameplay.Character.Attack.Network;
-using Client.Gameplay.Health;
+﻿using Client.Gameplay.Health;
 using Client.Gameplay.Map;
 using Client.Gameplay.Movement;
+using Client.Gameplay.Projectile.Network;
 using UnityEngine;
 
-namespace Client.Gameplay.Character.Attack
+namespace Client.Gameplay.Projectile
 {
     public class ProjectileSimAgent : MonoBehaviour, IChunkSimEntity, IStateProvider<ProjectileState>
     {

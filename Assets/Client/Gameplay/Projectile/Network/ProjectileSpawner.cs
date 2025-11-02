@@ -1,9 +1,10 @@
-﻿using Client.Services.Injections;
+﻿using Client.Gameplay.Character;
+using Client.Services.Injections;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine;
 
-namespace Client.Gameplay.Character.Attack.Network
+namespace Client.Gameplay.Projectile.Network
 {
     public class ProjectileSpawner : NetworkBehaviour
     {

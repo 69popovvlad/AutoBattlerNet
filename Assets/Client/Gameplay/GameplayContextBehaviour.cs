@@ -1,6 +1,6 @@
 ﻿using Client.Gameplay.Character;
-using Client.Gameplay.Character.Attack.Network;
 using Client.Gameplay.Npc.Network;
+using Client.Gameplay.Projectile.Network;
 using Client.Services.Injections;
 using UnityEngine;
 

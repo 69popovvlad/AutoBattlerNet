@@ -1,9 +1,9 @@
-﻿using Client.Gameplay.Character.Attack.Network;
-using Client.Gameplay.Character.Network;
+﻿using Client.Gameplay.Character.Network;
+using Client.Gameplay.Projectile.Network;
 using Client.Services.Pool;
 using UnityEngine;
 
-namespace Client.Gameplay.Character.Attack
+namespace Client.Gameplay.Projectile
 {
     public class ProjectileContext : MonoBehaviour, IPoolable, IKeyed<uint>
     {

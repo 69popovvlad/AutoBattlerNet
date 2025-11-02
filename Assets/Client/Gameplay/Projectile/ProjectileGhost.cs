@@ -1,8 +1,8 @@
-﻿using Client.Gameplay.Character.Attack.Network;
-using Client.Gameplay.Movement;
+﻿using Client.Gameplay.Movement;
+using Client.Gameplay.Projectile.Network;
 using UnityEngine;
 
-namespace Client.Gameplay.Character.Attack
+namespace Client.Gameplay.Projectile
 {
     public class ProjectileGhost : MonoBehaviour
     {

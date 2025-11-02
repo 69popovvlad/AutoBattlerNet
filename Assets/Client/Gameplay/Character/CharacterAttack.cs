@@ -1,9 +1,9 @@
-﻿using Client.Gameplay.Character.Attack.Network;
-using Client.Gameplay.Character.Network;
+﻿using Client.Gameplay.Character.Network;
+using Client.Gameplay.Projectile.Network;
 using FishNet.Object;
 using UnityEngine;
 
-namespace Client.Gameplay.Character.Attack
+namespace Client.Gameplay.Character
 {
     public class CharacterAttack : NetworkBehaviour
     {

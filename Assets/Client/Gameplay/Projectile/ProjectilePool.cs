@@ -1,7 +1,7 @@
 ﻿using Client.Services.Pool;
 using UnityEngine;
 
-namespace Client.Gameplay.Character.Attack
+namespace Client.Gameplay.Projectile
 {
     public class ProjectilePool : TrackedPool<uint, ProjectileContext>
     {

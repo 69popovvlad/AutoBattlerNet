@@ -1,4 +1,4 @@
-﻿namespace Client.Gameplay.Character.Attack.Network
+﻿namespace Client.Gameplay.Projectile.Network
 {
     public struct ProjectileDespawnData
     {

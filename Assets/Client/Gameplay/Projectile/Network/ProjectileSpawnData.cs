@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Client.Gameplay.Character.Attack.Network
+namespace Client.Gameplay.Projectile.Network
 {
     public class ProjectileSpawnData
     {

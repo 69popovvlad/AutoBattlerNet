@@ -2,7 +2,7 @@
 using FishNet.Object;
 using UnityEngine;
 
-namespace Client.Gameplay.Character.Attack.Network
+namespace Client.Gameplay.Projectile.Network
 {
     public class ProjectileBatchSender : NetworkBehaviour, IStateBatchSink<ProjectileState>
     {
