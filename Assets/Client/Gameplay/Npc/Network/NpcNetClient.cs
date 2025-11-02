@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Validosik.Core.Ioc.Attributes;
 
 namespace Client.Gameplay.Npc.Network
 {
-    public class NpcNetClient : MonoBehaviour
+    [ContainableServiceImplementation("f9bc6acc-c611-42af-8a60-f64739272832", "9b18d07c-994c-463a-b429-15c0e04bf55d")]
+    public class NpcNetClient : MonoBehaviour, INpcGhostContainer
     {
         private readonly Dictionary<uint, NpcGhost> _byId = new();
 
@@ -31,5 +33,8 @@ namespace Client.Gameplay.Npc.Network
                 }
             }
         }
+
+        public bool TryGetGhost(uint entityId, out NpcGhost ghost) =>
+            _byId.TryGetValue(entityId, out ghost);
     }
 }

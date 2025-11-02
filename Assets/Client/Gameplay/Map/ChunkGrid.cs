@@ -167,17 +167,17 @@ namespace Client.Gameplay.Map
             return false;
         }
 
-        private int WorldToChunkCoordX(float worldX) =>
-            Mathf.FloorToInt((worldX - _originWorldX) / _chunkSize) + _minX;
-
-        private int WorldToChunkCoordZ(float worldZ) =>
-            Mathf.FloorToInt((worldZ - _originWorldZ) / _chunkSize) + _minZ;
-
-        private int ToIndexFromWorld(float worldX, float worldZ)
+        public int ToIndexFromWorld(float worldX, float worldZ)
         {
             var cx = WorldToChunkCoordX(worldX);
             var cz = WorldToChunkCoordZ(worldZ);
             return ToIndex(cx, cz);
         }
+
+        private int WorldToChunkCoordX(float worldX) =>
+            Mathf.FloorToInt((worldX - _originWorldX) / _chunkSize) + _minX;
+
+        private int WorldToChunkCoordZ(float worldZ) =>
+            Mathf.FloorToInt((worldZ - _originWorldZ) / _chunkSize) + _minZ;
     }
 }

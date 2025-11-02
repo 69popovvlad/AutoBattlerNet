@@ -48,12 +48,10 @@ namespace Client.Gameplay.Npc.Network
         {
             if (!_isHost)
             {
-                Debug.Log("Isn't host");
                 return;
             }
 
             _leftToSpawn.Value -= Time.deltaTime;
-            Debug.Log(_leftToSpawn);
             if (_leftToSpawn.Value > 0)
             {
                 return;
@@ -92,8 +90,8 @@ namespace Client.Gameplay.Npc.Network
             npc.transform.SetParent(null);
 
             npc.Activate(data.Id, data.TargetId);
-            
-            _npcAuthority.RegisterNpc(npc);
+
+            _npcAuthority.RegisterNpc(npc.NpcSimAgent);
             _npcNetClient.Register(npc.Id, npc.Ghost);
         }
     }

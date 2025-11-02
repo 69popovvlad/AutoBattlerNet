@@ -1,0 +1,75 @@
+﻿using Client.Gameplay.Map;
+using Client.Gameplay.Network.Character;
+using Client.Gameplay.Npc.Network;
+using Client.Services.Injections;
+using UnityEngine;
+using Validosik.Client.Character.Rider;
+
+namespace Client.Gameplay.Npc
+{
+    public class NpcSimAgent : MonoBehaviour, IChunkSimEntity, IStateProvider<NpcState>
+    {
+        [SerializeField] private GroundRider _rider;
+        [SerializeField] private float _arriveStopDist = 0.3f;
+
+        public uint Id { get; private set; }
+        public bool IsActive => gameObject.activeInHierarchy;
+        public Vector3 Position => transform.position;
+
+        private Transform _tr;
+        private Transform _target;
+        private ICharacterContainer _characterContainer;
+
+        private void Awake()
+        {
+            _tr = transform;
+            _characterContainer = Ioc.Instance.Resolve<ICharacterContainer>();
+        }
+
+        public void Activate(uint id, int targetId)
+        {
+            Id = id;
+            if (_characterContainer.TryGet(targetId, out var characterContext))
+            {
+                _target = characterContext.transform;
+            }
+        }
+
+        public void Deactivate()
+        {
+            _target = null;
+        }
+
+        public void Simulate(float delta)
+        {
+            var direction = Vector2.zero;
+            if (_target != null)
+            {
+                var toTarget = _target.position - _tr.position;
+                var flat = new Vector2(toTarget.x, toTarget.z);
+                var distance = flat.magnitude;
+
+                if (distance > _arriveStopDist)
+                {
+                    // Preventing division by zero
+                    direction = flat / (distance > 1e-4f ? distance : 1f);
+                }
+            }
+
+            _rider.ApplyInputStep(direction, delta);
+        }
+
+        public NpcState ExtractState(uint tick)
+        {
+            var ks = _rider.GetState();
+            return new NpcState
+            {
+                Tick = tick,
+                Id = Id,
+                Position = ks.Position,
+                Velocity = ks.Velocity,
+                Yaw = ks.Yaw
+            };
+        }
+    }
+}

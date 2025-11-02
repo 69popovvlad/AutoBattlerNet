@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Client.Gameplay.Npc
 {
-    public class NpcPool : Pool<SomeNpc>
+    public class NpcPool : Pool<NpcContext>
     {
-        [SerializeField] private SomeNpc _prefab;
+        [SerializeField] private NpcContext _prefab;
         [SerializeField] private Transform _poolRoot;
 
-        protected override SomeNpc CreateInstance() =>
+        protected override NpcContext CreateInstance() =>
             Instantiate(_prefab, _poolRoot);
     }
 }
