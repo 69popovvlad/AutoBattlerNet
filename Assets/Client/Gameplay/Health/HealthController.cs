@@ -30,6 +30,7 @@ namespace Client.Gameplay.Health
         public void Reset()
         {
             _currentHealth = _initialHealth;
+            IsDead = false;
         }
 
         public void Damage(int damage)
