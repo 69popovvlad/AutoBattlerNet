@@ -2811,7 +2811,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1725433941}
   _networkObjectCache: {fileID: 0}
   _pool: {fileID: 1725433940}
-  _npcLimit: 50
+  _npcLimit: 20
   _spawnInterval: 1
   _stats:
   - TypeId: 0
@@ -3076,6 +3076,10 @@ MonoBehaviour:
     Damage: 4
     Speed: 14
     MaxSpeed: 18
+  - TypeId: 1
+    Damage: 2
+    Speed: 7
+    MaxSpeed: 8
   _npcAuthority: {fileID: 9461280}
   _npcNetClient: {fileID: 293369874}
 --- !u!4 &1761399838

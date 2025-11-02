@@ -42,6 +42,11 @@ namespace Client.Gameplay.Movement
             _motorBody.interpolation = RigidbodyInterpolation.Interpolate;
         }
 
+        private void OnEnable()
+        {
+            _motorBody.WakeUp();
+        }
+
         private void FixedUpdate()
         {
             ApplyMovementXZ();
@@ -134,6 +139,13 @@ namespace Client.Gameplay.Movement
         public void SetLookTarget(Transform t)
         {
             _lookTarget = t;
+        }
+
+        public void Reset()
+        {
+            _motorBody.linearVelocity = Vector3.zero;
+            _motorBody.angularVelocity = Vector3.zero;
+            _motorBody.Sleep();
         }
     }
 }

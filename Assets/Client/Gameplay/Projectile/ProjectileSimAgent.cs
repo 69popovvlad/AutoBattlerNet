@@ -10,12 +10,14 @@ namespace Client.Gameplay.Projectile
     {
         [SerializeField] private SimpleRider _rider;
         [SerializeField] private TrailRenderer _trailRenderer;
+        [SerializeField] private float _autoDestroyDelay = 3f;
 
         private Transform _tr;
         private Transform _target;
         private Vector3 _initDirection;
         private GameplayContextBehaviour _gameplayContext;
         private int _damage;
+        private float _leftToDestroy;
 
         public uint Id { get; private set; }
         public bool IsActive => gameObject.activeInHierarchy;
@@ -27,6 +29,7 @@ namespace Client.Gameplay.Projectile
         {
             _tr = transform;
             _gameplayContext = GameplayContextBehaviour.Instance;
+            _leftToDestroy = _autoDestroyDelay;
         }
 
         public void Init(in ProjectileSpawnData data, ProjectileContext context)
@@ -67,6 +70,10 @@ namespace Client.Gameplay.Projectile
         {
             _target = null;
             _trailRenderer.Clear();
+            _initDirection = Vector3.zero;
+            _leftToDestroy = _autoDestroyDelay;
+            _rider.ApplyInputStep(_initDirection, 1f);
+            _rider.Reset();
         }
 
         public void Simulate(float delta)
@@ -78,6 +85,12 @@ namespace Client.Gameplay.Projectile
             }
 
             _rider.ApplyInputStep(direction, delta);
+
+            _leftToDestroy -= delta;
+            if (_leftToDestroy <= 0)
+            {
+                _gameplayContext.ProjectileSpawner.DespawnProjectile(Id);
+            }
         }
 
         public ProjectileState ExtractState(uint tick)
