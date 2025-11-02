@@ -280,7 +280,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 3629230913834095779}
   _networkObjectCache: {fileID: 3629230913834095779}
   _nudgeThreshold: 0.05
-  _snapThreshold: 0.5
+  _snapThreshold: 0
   _nudgeVelFactor: 0.5
   _nudgePosFactor: 0.5
   _nudgeYawFactor: 0.5
