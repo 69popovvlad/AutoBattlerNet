@@ -5,7 +5,7 @@ using FishNet.Object.Synchronizing;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Client.Gameplay.Npc
+namespace Client.Gameplay.Npc.Network
 {
     public class NpcSpawner : NetworkBehaviour
     {
@@ -14,6 +14,8 @@ namespace Client.Gameplay.Npc
         [SerializeField] private float _spawnInterval = 1;
         [SerializeField] private NpcStats[] _stats;
         [SerializeField] private Transform[] _spawnPoints;
+        [SerializeField] private NpcAuthority _npcAuthority;
+        [SerializeField] private NpcNetClient _npcNetClient;
 
         private uint _nextId;
         private uint _nextSpawnPoint;
@@ -28,7 +30,6 @@ namespace Client.Gameplay.Npc
             _leftToSpawn.Value = _spawnInterval;
 
             _characterContainer = Ioc.Instance.Resolve<ICharacterContainer>();
-
         }
 
         private void Start()
@@ -74,7 +75,7 @@ namespace Client.Gameplay.Npc
             var randomSpawnPoint = Random.Range(0, _spawnPoints.Length);
             SpawnOnNetwork(new NpcSpawnData()
             {
-                Id = _nextId,
+                Id = _nextId++,
                 TargetId = targetContext.NetworkObject.ObjectId,
                 SpawnPoint = randomSpawnPoint,
                 Stats = randomStats,
@@ -86,8 +87,14 @@ namespace Client.Gameplay.Npc
         {
             var npc = _pool.Rent();
             npc.SetStats(data.Stats);
-            npc.transform.SetParent(null);
+
             npc.TeleportToPoint(_spawnPoints[data.SpawnPoint].position);
+            npc.transform.SetParent(null);
+
+            npc.Activate(data.Id, data.TargetId);
+            
+            _npcAuthority.RegisterNpc(npc);
+            _npcNetClient.Register(npc.Id, npc.Ghost);
         }
     }
 }

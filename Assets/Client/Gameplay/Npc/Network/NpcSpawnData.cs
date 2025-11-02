@@ -1,4 +1,4 @@
-﻿namespace Client.Gameplay.Npc
+﻿namespace Client.Gameplay.Npc.Network
 {
     public struct NpcSpawnData
     {

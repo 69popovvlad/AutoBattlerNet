@@ -297,7 +297,7 @@ Transform:
   m_GameObject: {fileID: 269649060}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -163.8, y: 0, z: 0}
+  m_LocalPosition: {x: -66.2, y: 0, z: 70.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1664,6 +1664,8 @@ GameObject:
   - component: {fileID: 1725433939}
   - component: {fileID: 1725433940}
   - component: {fileID: 1725433941}
+  - component: {fileID: 1725433943}
+  - component: {fileID: 1725433942}
   m_Layer: 0
   m_Name: NpcSpawner&Pool
   m_TagString: Untagged
@@ -1722,6 +1724,8 @@ MonoBehaviour:
   - {fileID: 752698537}
   - {fileID: 1741510204}
   - {fileID: 1203765415}
+  _npcAuthority: {fileID: 1725433943}
+  _npcNetClient: {fileID: 1725433942}
 --- !u!114 &1725433940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1790,6 +1794,45 @@ MonoBehaviour:
     Rotation: {x: 0, y: 0, z: 0, w: 0}
     Scale: {x: 0, y: 0, z: 0}
     IsValid: 0
+--- !u!114 &1725433942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725433937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2212def755d54cc087f8ce9ab38ff9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1725433943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725433937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa01ab65d6ee4b8991f72ef356c48e8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1725433941}
+  _networkObjectCache: {fileID: 0}
+  _width: 20
+  _height: 20
+  _minX: -10
+  _minZ: -10
+  _chunkSize: 10
+  _drawGizmos: 1
+  _gridColor: {r: 0, g: 1, b: 0, a: 1}
+  _drawLabels: 0
+  _simTargetFPS: 30
+  _sendingTargetFPS: 20
+  _arriveStopDist: 0.3
+  _npcNetClient: {fileID: 1725433942}
 --- !u!1 &1738950695
 GameObject:
   m_ObjectHideFlags: 0

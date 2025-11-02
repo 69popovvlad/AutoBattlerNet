@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6684806460957147277}
   - component: {fileID: 6143191222507154513}
   - component: {fileID: 3696233967653638326}
+  - component: {fileID: 1763640570590226620}
   m_Layer: 0
   m_Name: SomeNpc
   m_TagString: Untagged
@@ -253,3 +254,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundRider: {fileID: 6143191222507154513}
+  _ghost: {fileID: 1763640570590226620}
+--- !u!114 &1763640570590226620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8937099794708561448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449f7430ca3d4f70a8a4b429d5286a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rider: {fileID: 6143191222507154513}
+  nudgeThreshold: 0.05
+  snapThreshold: 0.5
+  nudgeVelFactor: 0.5
+  nudgePosFactor: 0.5
+  nudgeYawFactor: 0.5
