@@ -261,7 +261,7 @@ MonoBehaviour:
   _accel: 30
   _decel: 40
   _maxSpeed: 8
-  _turnSpeed: 360
+  _turnSpeed: 3600
   _lookTarget: {fileID: 0}
 --- !u!114 &6250817866123711051
 MonoBehaviour:

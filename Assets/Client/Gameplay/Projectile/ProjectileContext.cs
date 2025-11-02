@@ -20,9 +20,9 @@ namespace Client.Gameplay.Projectile
 
         internal void Init(in ProjectileSpawnData data, CharacterContext characterContext)
         {
-            _projectileSimAgent.Init(data, this);
-
             TeleportToPoint(characterContext.transform.position);
+            
+            _projectileSimAgent.Init(data, this);
         }
 
         internal void TeleportToPoint(in Vector3 position) =>

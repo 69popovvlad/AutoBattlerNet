@@ -7,5 +7,7 @@ namespace Client.Gameplay.Projectile
     {
         public ushort TypeId;
         public int Damage;
+        public float Speed;
+        public float MaxSpeed;
     }
 }

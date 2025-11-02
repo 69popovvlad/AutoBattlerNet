@@ -9,7 +9,6 @@ namespace Client.Gameplay.Projectile
     public class ProjectileSimAgent : MonoBehaviour, IChunkSimEntity, IStateProvider<ProjectileState>
     {
         [SerializeField] private SimpleRider _rider;
-        [SerializeField] private float _arriveStopDist = 0.02f;
         [SerializeField] private TrailRenderer _trailRenderer;
 
         private Transform _tr;
@@ -34,9 +33,22 @@ namespace Client.Gameplay.Projectile
         {
             Id = data.Id;
             ProjectileContext = context;
-
-            _initDirection = new Vector3(data.Direction.x, 0, data.Direction.y).normalized;
             _damage = data.Stats.Damage;
+
+            _rider.ChangeSpeed(data.Stats.Speed, data.Stats.MaxSpeed);
+
+            Transform target = default;
+            if (_gameplayContext.NpcNetClient.TryGetGhost(data.TargetId, out var npc))
+            {
+                target = npc.transform;
+
+                _initDirection = CalculateDirection(target);
+            }
+            else
+            {
+                _gameplayContext.ProjectileSpawner.DespawnProjectile(Id);
+                return;
+            }
 
             switch (data.Stats.TypeId)
             {
@@ -46,12 +58,7 @@ namespace Client.Gameplay.Projectile
 
                 case 1:
                     _trailRenderer.enabled = true;
-
-                    if (_gameplayContext.NpcNetClient.TryGetGhost(data.TargetId, out var characterContext))
-                    {
-                        _target = characterContext.transform;
-                    }
-
+                    _target = target;
                     break;
             }
         }
@@ -67,15 +74,7 @@ namespace Client.Gameplay.Projectile
             var direction = _initDirection;
             if (_target != null)
             {
-                var toTarget = _target.position - _tr.position;
-                var flat = new Vector2(toTarget.x, toTarget.z);
-                var distance = flat.magnitude;
-
-                if (distance > _arriveStopDist)
-                {
-                    // Preventing division by zero
-                    direction = flat / (distance > 1e-4f ? distance : 1f);
-                }
+                direction = CalculateDirection(_target);
             }
 
             _rider.ApplyInputStep(direction, delta);
@@ -94,6 +93,16 @@ namespace Client.Gameplay.Projectile
             };
         }
 
+        private Vector3 CalculateDirection(Transform target)
+        {
+            var toTarget = target.position - _tr.position;
+            var flat = new Vector2(toTarget.x, toTarget.z);
+            var distance = flat.magnitude;
+
+            // Preventing division by zero
+            return flat / (distance > 1e-4f ? distance : 1f);
+        }
+
         private void OnCollisionEnter(Collision other)
         {
             if (!other.transform.TryGetComponent<HealthController>(out var healthController))
@@ -106,6 +115,7 @@ namespace Client.Gameplay.Projectile
             {
                 _gameplayContext.NpcSpawner.DespawnNpc(healthController.Id);
             }
+
             _gameplayContext.ProjectileSpawner.DespawnProjectile(Id);
         }
     }

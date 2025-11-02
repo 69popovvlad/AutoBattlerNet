@@ -2416,7 +2416,7 @@ MonoBehaviour:
   - TypeId: 1
     MoveSpeed: 10
     MaxSpeed: 14
-    Health: 4
+    Health: 8
   _spawnPoints:
   - {fileID: 1851911301}
   - {fileID: 2021371314}
@@ -2485,9 +2485,9 @@ MonoBehaviour:
   _enableStateForwarding: 1
   _networkTransform: {fileID: 0}
   _ownerInterpolation: 1
-  _ownerSmoothedProperties: 255
+  _ownerSmoothedProperties: 4294967295
   _adaptiveInterpolation: 3
-  _spectatorSmoothedProperties: 255
+  _spectatorSmoothedProperties: 4294967295
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
@@ -2669,8 +2669,8 @@ MonoBehaviour:
   _stats:
   - TypeId: 0
     Damage: 4
-  - TypeId: 1
-    Damage: 2
+    Speed: 14
+    MaxSpeed: 18
   _npcAuthority: {fileID: 9461280}
   _npcNetClient: {fileID: 293369874}
 --- !u!4 &1761399838

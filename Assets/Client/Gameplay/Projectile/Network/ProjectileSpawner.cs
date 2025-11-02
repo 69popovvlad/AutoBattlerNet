@@ -34,8 +34,8 @@ namespace Client.Gameplay.Projectile.Network
             _pool.Prewarm(32);
         }
 
-        [Server]
-        public void SpawnRandomProjectile(int fromId, uint targetId, in Vector2 direction)
+        [Server(Logging = LoggingType.Off)]
+        public void SpawnRandomProjectile(int fromId, uint targetId)
         {
             var randomStats = _stats[Random.Range(0, _stats.Length)];
             SpawnOnNetwork(new ProjectileSpawnData()
@@ -43,7 +43,6 @@ namespace Client.Gameplay.Projectile.Network
                 Id = _nextId++,
                 OwnerId = fromId,
                 TargetId = targetId,
-                Direction = direction,
                 Stats = randomStats,
             });
         }

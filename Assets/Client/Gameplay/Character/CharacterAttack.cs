@@ -61,9 +61,7 @@ namespace Client.Gameplay.Character
                 return;
             }
 
-            var direction = (nearestEntityGhost.transform.position - position);
-            direction.y = direction.z;
-            _projectileSpawner.SpawnRandomProjectile(_characterContext.ObjectId, nearestEntityId, direction);
+            _projectileSpawner.SpawnRandomProjectile(_characterContext.ObjectId, nearestEntityId);
         }
     }
 }
