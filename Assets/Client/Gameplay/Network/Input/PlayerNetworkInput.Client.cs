@@ -9,19 +9,19 @@ namespace Client.Gameplay.Network.Input
     {
         [Header("CLIENT")]
         [SerializeField, Tooltip("gentle pull to the state")]
-        private float nudgeThreshold = 0.05f;
+        private float _nudgeThreshold = 0.05f;
 
         [SerializeField, Tooltip("set the state immediately")]
-        private float snapThreshold = 0.50f;
+        private float _snapThreshold = 0.50f;
 
         [SerializeField, Range(0f, 1f), Tooltip("delta to pull variable")]
-        private float nudgeVelFactor = 0.5f;
+        private float _nudgeVelFactor = 0.5f;
 
         [SerializeField, Range(0f, 1f), Tooltip("delta to pull variable")]
-        private float nudgePosFactor = 0.5f;
+        private float _nudgePosFactor = 0.5f;
 
         [SerializeField, Range(0f, 1f), Tooltip("delta to pull variable")]
-        private float nudgeYawFactor = 0.5f;
+        private float _nudgeYawFactor = 0.5f;
 
         [TargetRpc]
         private void AckTargetRpc(NetworkConnection owner, PlayerState s)
@@ -44,8 +44,8 @@ namespace Client.Gameplay.Network.Input
             var positionError = s.Position - kinematicState.Position;
             var sqrError = positionError.sqrMagnitude;
 
-            var nudgeSqrError = nudgeThreshold * nudgeThreshold;
-            var snapSqrError = snapThreshold * snapThreshold;
+            var nudgeSqrError = _nudgeThreshold * _nudgeThreshold;
+            var snapSqrError = _snapThreshold * _snapThreshold;
 
             // Snap state
             if (sqrError >= snapSqrError)
@@ -60,11 +60,11 @@ namespace Client.Gameplay.Network.Input
             // Nudge
             else if (sqrError >= nudgeSqrError)
             {
-                kinematicState.Position += positionError * nudgePosFactor;
-                kinematicState.Velocity = Vector3.Lerp(kinematicState.Velocity, s.Velocity, nudgeVelFactor);
+                kinematicState.Position += positionError * _nudgePosFactor;
+                kinematicState.Velocity = Vector3.Lerp(kinematicState.Velocity, s.Velocity, _nudgeVelFactor);
 
                 var yawErr = Mathf.DeltaAngle(kinematicState.Yaw, s.Yaw);
-                kinematicState.Yaw += yawErr * nudgeYawFactor;
+                kinematicState.Yaw += yawErr * _nudgeYawFactor;
 
                 _rider.SetState(kinematicState);
             }

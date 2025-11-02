@@ -8,11 +8,11 @@ namespace Client.Gameplay.Network.Character
     {
         private readonly Dictionary<int, CharacterContext> _characters = new Dictionary<int, CharacterContext>();
 
-        public bool TryGetRandom(out CharacterContext ctx)
+        public bool TryGetRandom(out CharacterContext context)
         {
             if (_characters.Count == 0)
             {
-                ctx = null;
+                context = null;
                 return false;
             }
 
@@ -24,13 +24,16 @@ namespace Client.Gameplay.Network.Character
                     continue;
                 }
 
-                ctx = c;
+                context = c;
                 return true;
             }
 
-            ctx = null;
+            context = null;
             return false;
         }
+
+        public bool TryGet(int objectId, out CharacterContext context) =>
+            _characters.TryGetValue(objectId, out context);
 
         public bool TryAdd(CharacterContext context) =>
             _characters.TryAdd(context.NetworkObject.ObjectId, context);
