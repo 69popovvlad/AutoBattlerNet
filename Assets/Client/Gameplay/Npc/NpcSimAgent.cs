@@ -1,4 +1,5 @@
-﻿using Client.Gameplay.Character;
+﻿using System;
+using Client.Gameplay.Character;
 using Client.Gameplay.Health;
 using Client.Gameplay.Map;
 using Client.Gameplay.Movement;
@@ -27,6 +28,12 @@ namespace Client.Gameplay.Npc
             _tr = transform;
             _characterContainer = Ioc.Instance.Resolve<ICharacterContainer>();
             _gameplayContext = GameplayContextBehaviour.Instance;
+        }
+
+        private void FixedUpdate()
+        {
+            _rider.ApplyMovementXZ();
+            _rider.ApplyRotationY();
         }
 
         public void Init(in NpcSpawnData data)
@@ -80,7 +87,7 @@ namespace Client.Gameplay.Npc
         
         private void OnCollisionEnter(Collision other)
         {
-            if (!other.transform.TryGetComponent<HealthController>(out var healthController))
+            if (!other.transform.TryGetComponent<CharacterHealthController>(out var healthController))
             {
                 return;
             }

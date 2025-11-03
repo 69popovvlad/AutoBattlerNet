@@ -37,6 +37,15 @@ namespace Client.Gameplay.Network.Input
             _isHost = IsServerInitialized;
         }
 
+        private void FixedUpdate()
+        {
+            _rider.ApplyMovementXZ();
+            if (_isHost)
+            {
+                _rider.ApplyRotationY();
+            }
+        }
+
         public void CaptureLocalInput(Vector2 direction, float dt, byte flags)
         {
             UpdateLookAt();

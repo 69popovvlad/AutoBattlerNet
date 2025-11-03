@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 3629230913834095779}
   - component: {fileID: 7926116752300999580}
   - component: {fileID: 3597969436662674385}
-  - component: {fileID: 3683387910195392512}
+  - component: {fileID: 3443314125191874813}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -279,7 +279,7 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 3629230913834095779}
   _networkObjectCache: {fileID: 3629230913834095779}
-  _nudgeThreshold: 0.05
+  _nudgeThreshold: 0.1
   _snapThreshold: 0
   _nudgeVelFactor: 0.5
   _nudgePosFactor: 0.5
@@ -357,7 +357,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 3629230913834095779}
   _networkObjectCache: {fileID: 3629230913834095779}
   _movementInputRouter: {fileID: 1857181279412793621}
-  _healthController: {fileID: 3683387910195392512}
+  _healthController: {fileID: 3443314125191874813}
 --- !u!114 &3597969436662674385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 3629230913834095779}
   _characterContext: {fileID: 7926116752300999580}
   _cooldownDuration: 0.5
---- !u!114 &3683387910195392512
+--- !u!114 &3443314125191874813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8937099794708561448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b305311b731940f0bb9099a1ecfb9e4c, type: 3}
+  m_Script: {fileID: 11500000, guid: d2e00361586c4495aedc002fdf5cc678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _initialHealth: 2147483647

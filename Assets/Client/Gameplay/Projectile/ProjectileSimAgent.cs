@@ -31,6 +31,12 @@ namespace Client.Gameplay.Projectile
             _gameplayContext = GameplayContextBehaviour.Instance;
             _leftToDestroy = _autoDestroyDelay;
         }
+        
+        private void FixedUpdate()
+        {
+            _rider.ApplyMovementXZ();
+            _rider.ApplyRotationY();
+        }
 
         public void Init(in ProjectileSpawnData data, ProjectileContext context)
         {
@@ -118,7 +124,7 @@ namespace Client.Gameplay.Projectile
 
         private void OnCollisionEnter(Collision other)
         {
-            if (!other.transform.TryGetComponent<HealthController>(out var healthController))
+            if (!other.transform.TryGetComponent<EnemyHealthController>(out var healthController))
             {
                 return;
             }

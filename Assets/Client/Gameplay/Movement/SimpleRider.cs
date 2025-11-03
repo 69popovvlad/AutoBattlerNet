@@ -47,13 +47,7 @@ namespace Client.Gameplay.Movement
             _motorBody.WakeUp();
         }
 
-        private void FixedUpdate()
-        {
-            ApplyMovementXZ();
-            ApplyRotationY();
-        }
-
-        private void ApplyMovementXZ()
+        public void ApplyMovementXZ()
         {
             var velocity = _motorBody.linearVelocity;
             var horizontalVelocity = new Vector3(velocity.x, 0f, velocity.z);
@@ -82,7 +76,7 @@ namespace Client.Gameplay.Movement
             _motorBody.linearVelocity = new Vector3(newHorizontalVelocity.x, velocity.y, newHorizontalVelocity.z);
         }
 
-        private void ApplyRotationY()
+        public void ApplyRotationY()
         {
             var heading = Vector3.zero;
 
