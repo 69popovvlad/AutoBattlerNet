@@ -44,12 +44,11 @@ namespace Client.Gameplay.Projectile
             if (_gameplayContext.NpcSpawner.TryGetSpawned(data.TargetId, out var npc))
             {
                 target = npc.transform;
-
                 _initDirection = CalculateDirection(target);
             }
             else
             {
-                _gameplayContext.ProjectileSpawner.DespawnProjectile(Id);
+                _initDirection = transform.forward;
                 return;
             }
 
