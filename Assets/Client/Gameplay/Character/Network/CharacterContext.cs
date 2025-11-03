@@ -28,7 +28,8 @@ namespace Client.Gameplay.Character.Network
             _healthController.OnDamaged -= OnDamaged;
         }
 
-        private void OnDamaged(int obj)
+        [ObserversRpc]
+        private void OnDamaged(int damage)
         {
             if (!IsOwner)
             {
