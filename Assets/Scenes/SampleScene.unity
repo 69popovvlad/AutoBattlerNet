@@ -857,34 +857,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f521972985ef427fbeaedd9140b826aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseSmoothTime: 0.2
-  _curveMaxDist: 10
-  _smoothByDistance:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 2
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0.6
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _deadZoneSize: {x: 7, y: 5}
-  _offset: {x: 0, y: 10, z: -8}
+  smoothTime: 0.2
+  deadZoneSize: {x: 1.5, y: 1}
+  offset: {x: 0, y: 10, z: -8}
 --- !u!1 &367542306
 GameObject:
   m_ObjectHideFlags: 0
@@ -3396,12 +3371,12 @@ MonoBehaviour:
   _spawnInterval: 0.25
   _stats:
   - TypeId: 0
-    MoveSpeed: 6
-    MaxSpeed: 8
+    MoveSpeed: 3
+    MaxSpeed: 4
     Health: 10
   - TypeId: 1
-    MoveSpeed: 10
-    MaxSpeed: 14
+    MoveSpeed: 5
+    MaxSpeed: 7
     Health: 8
   _spawnPoints:
   - {fileID: 1851911301}
@@ -3730,12 +3705,12 @@ MonoBehaviour:
   _stats:
   - TypeId: 0
     Damage: 4
-    Speed: 14
-    MaxSpeed: 18
+    Speed: 20
+    MaxSpeed: 22
   - TypeId: 1
     Damage: 2
-    Speed: 7
-    MaxSpeed: 8
+    Speed: 13
+    MaxSpeed: 15
   _npcAuthority: {fileID: 9461280}
   _npcNetClient: {fileID: 293369874}
 --- !u!4 &1761399838
