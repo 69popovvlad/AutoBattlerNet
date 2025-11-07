@@ -67,9 +67,10 @@ namespace Client.Gameplay.Map
             _gridBehaviour.ChunkGrid.RemoveEntity(agent.Id);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            _simAccum += Time.deltaTime;
+            var deltaTime = Time.fixedDeltaTime;
+            _simAccum += deltaTime;
             while (_simAccum >= _simDelta)
             {
                 ++_tick;
