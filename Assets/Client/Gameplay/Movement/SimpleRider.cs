@@ -29,7 +29,7 @@ namespace Client.Gameplay.Movement
         [SerializeField] private Transform _lookTarget;
 
         private Transform _tr;
-        private Vector3 _moveInput;
+        private Vector3   _moveInput;
 
         private void Awake()
         {
@@ -47,7 +47,7 @@ namespace Client.Gameplay.Movement
             _motorBody.WakeUp();
         }
 
-        public void ApplyMovementXZ()
+        public void ApplyMovementXZ(float deltaTime, bool updatePosition = false)
         {
             var velocity = _motorBody.linearVelocity;
             var horizontalVelocity = new Vector3(velocity.x, 0f, velocity.z);
@@ -55,7 +55,7 @@ namespace Client.Gameplay.Movement
             var want = _moveInput * _moveSpeed;
             var hasInput = _moveInput.sqrMagnitude > 1e-6f;
 
-            var rate = (hasInput ? _accel : _decel) * Time.fixedDeltaTime;
+            var rate = (hasInput ? _accel : _decel) * deltaTime;
             var delta = want - horizontalVelocity;
 
             // clamp per-step acceleration on XZ
@@ -74,9 +74,14 @@ namespace Client.Gameplay.Movement
             }
 
             _motorBody.linearVelocity = new Vector3(newHorizontalVelocity.x, velocity.y, newHorizontalVelocity.z);
+
+            if (updatePosition)
+            {
+                _motorBody.position += _motorBody.linearVelocity * deltaTime;
+            }
         }
 
-        public void ApplyRotationY()
+        public void ApplyRotationY(float deltaTime)
         {
             var heading = Vector3.zero;
 
@@ -114,7 +119,7 @@ namespace Client.Gameplay.Movement
             }
 
             var targetRot = Quaternion.LookRotation(heading, Vector3.up);
-            var maxStep = _turnSpeed * Time.fixedDeltaTime;
+            var maxStep = _turnSpeed * deltaTime;
             _tr.rotation = Quaternion.RotateTowards(_tr.rotation, targetRot, maxStep);
         }
 

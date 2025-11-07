@@ -4,12 +4,6 @@ namespace Client.Gameplay.Movement
 {
     public partial class SimpleRider
     {
-        public void ApplyInputStep(in Vector2 direction, float delta)
-        {
-            var v = new Vector3(direction.x, 0f, direction.y);
-            _moveInput = Vector3.ClampMagnitude(v, 1f);
-        }
-
         public KinematicState GetState()
         {
             return new KinematicState
@@ -27,6 +21,15 @@ namespace Client.Gameplay.Movement
             var e = _tr.eulerAngles;
             e.y = state.Yaw;
             _tr.eulerAngles = e;
+        }
+
+        public void SimulateStep(in Vector2 direction, float deltaTime)
+        {
+            var v = new Vector3(direction.x, 0f, direction.y);
+            _moveInput = Vector3.ClampMagnitude(v, 1f);
+
+            ApplyMovementXZ(deltaTime, updatePosition: true);
+            ApplyRotationY(deltaTime);
         }
     }
 }
