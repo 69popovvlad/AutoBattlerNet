@@ -1,4 +1,5 @@
 ﻿using Client.Gameplay.Character.Network;
+using FishNet.Connection;
 using FishNet.Object;
 using UnityEngine;
 
@@ -21,10 +22,10 @@ namespace Client.Gameplay.Network.Player
         }
 
         [ServerRpc]
-        private void RequestSpawnCharacterServerRpc()
+        private void RequestSpawnCharacterServerRpc(NetworkConnection ownerConnection = null)
         {
             var character = Instantiate(_characterPrefab, gameObject.transform);
-            ServerManager.Spawn(character, Owner);
+            ServerManager.Spawn(character, ownerConnection);
         }
     }
 }
