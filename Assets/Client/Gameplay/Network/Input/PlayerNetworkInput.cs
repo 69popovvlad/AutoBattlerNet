@@ -7,7 +7,8 @@ namespace Client.Gameplay.Network.Input
 {
     public partial class PlayerNetworkInput : NetworkBehaviour
     {
-        private const float SIM_DT = 1f / 60f;
+        private const int   MAX_PENDING_INPUTS = 120; // 2 seconds with 60 FPS
+        private const float SIM_DT             = 1f / 60f;
 
         [SerializeField] private SimpleRider _rider;
 
@@ -15,13 +16,14 @@ namespace Client.Gameplay.Network.Input
 
         private readonly List<InputSnapshot> _pending = new();
 
-        private bool _isHost;
-        private uint _seq;
-        private float _accumLocal;
-        private float _accumSend;
-        private float _sendDelta;
-        private Transform _tr;
+        private bool                     _isHost;
+        private uint                     _seq;
+        private float                    _accumLocal;
+        private float                    _accumSend;
+        private float                    _sendDelta;
+        private Transform                _tr;
         private GameplayContextBehaviour _gameplayContext;
+        private int                      _lastSentIndex;
 
         private void Awake()
         {
@@ -39,23 +41,24 @@ namespace Client.Gameplay.Network.Input
 
         private void FixedUpdate()
         {
-            _rider.ApplyMovementXZ();
-            if (_isHost)
+            UpdateLookAt();
+            
+            if (!IsOwner || _isHost)
             {
-                _rider.ApplyRotationY();
+                var deltaTime = Time.fixedDeltaTime;
+                _rider.ApplyRotationY(deltaTime);
+                _rider.ApplyMovementXZ(deltaTime);
             }
         }
 
-        public void CaptureLocalInput(Vector2 direction, float dt, byte flags)
+        public void CaptureLocalInput(Vector2 direction, float deltaTime, byte flags)
         {
-            UpdateLookAt();
-
             if (!IsOwner)
             {
                 return;
             }
 
-            _accumLocal += dt;
+            _accumLocal += deltaTime;
             while (_accumLocal >= SIM_DT)
             {
                 var inputSnapshot = new InputSnapshot
@@ -65,31 +68,57 @@ namespace Client.Gameplay.Network.Input
                     Flags = flags
                 };
 
-                if (!_isHost)
-                {
-                    PredictLocal(in inputSnapshot);
-                }
+                PredictLocal(in inputSnapshot);
 
                 _pending.Add(inputSnapshot);
                 _accumLocal -= SIM_DT;
             }
 
-            _accumSend += dt;
+            _accumSend += deltaTime;
             if (_accumSend < _sendDelta)
             {
                 return;
             }
 
             _accumSend = 0f;
-            if (_pending.Count > 0)
+            if (_pending.Count <= _lastSentIndex)
             {
-                SubmitInputServerRpc(_pending.ToArray());
+                return;
             }
+
+            if (!_isHost)
+            {
+                var toSend = _pending.GetRange(_lastSentIndex, _pending.Count - _lastSentIndex);
+                SubmitInputServerRpc(toSend.ToArray());
+            }
+            else
+            {
+                var kinematicState = _rider.GetState();
+                var lastState = new PlayerState
+                {
+                    LastSequence = _pending[^1].Sequence,
+                    Position = kinematicState.Position,
+                    Velocity = kinematicState.Velocity,
+                    Yaw = kinematicState.Yaw
+                };
+
+                StateForObserversRpc(lastState);
+            }
+
+            if (_pending.Count > MAX_PENDING_INPUTS)
+            {
+#if UNITY_EDITOR
+                Debug.LogWarning($"Too many pending inputs ({_pending.Count}), connection issues?");
+#endif
+                _pending.RemoveRange(0, _pending.Count - MAX_PENDING_INPUTS);
+            }
+
+            _lastSentIndex = _pending.Count;
         }
 
         private void PredictLocal(in InputSnapshot s)
         {
-            _rider.ApplyInputStep(s.Direction, SIM_DT);
+            _rider.SimulateStep(s.Direction, SIM_DT);
         }
 
         private void UpdateLookAt()
@@ -101,6 +130,7 @@ namespace Client.Gameplay.Network.Input
             }
             else
             {
+                Debug.Log("NO TARGET");
                 _rider.SetLookTarget(null);
             }
         }

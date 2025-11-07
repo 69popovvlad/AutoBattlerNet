@@ -1,6 +1,5 @@
 ﻿using FishNet.Connection;
 using FishNet.Object;
-using UnityEngine;
 
 namespace Client.Gameplay.Network.Input
 {
@@ -29,7 +28,7 @@ namespace Client.Gameplay.Network.Input
                 }
 
                 // Server prediction
-                _rider.ApplyInputStep(inputSnapshot.Direction, SIM_DT);
+                PredictLocal(in inputSnapshot);
 
                 var kinematicState = _rider.GetState();
                 lastState = new PlayerState
@@ -51,21 +50,6 @@ namespace Client.Gameplay.Network.Input
 
             AckTargetRpc(sender, lastState);
             StateForObserversRpc(lastState);
-        }
-
-
-        [ObserversRpc(ExcludeOwner = true)]
-        private void StateForObserversRpc(PlayerState playerState)
-        {
-            // For not owners, but clients set current state
-            var kinematicState = _rider.GetState();
-
-            // Simple lerp
-            kinematicState.Position = Vector3.Lerp(kinematicState.Position, playerState.Position, 0.8f);
-            kinematicState.Velocity = Vector3.Lerp(kinematicState.Velocity, playerState.Velocity, 0.8f);
-            kinematicState.Yaw = Mathf.LerpAngle(kinematicState.Yaw, playerState.Yaw, 0.8f);
-
-            _rider.SetState(kinematicState);
         }
 
         [System.Runtime.CompilerServices.MethodImpl(

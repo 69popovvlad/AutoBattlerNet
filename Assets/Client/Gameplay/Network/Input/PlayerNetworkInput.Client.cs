@@ -26,55 +26,83 @@ namespace Client.Gameplay.Network.Input
         [TargetRpc]
         private void AckTargetRpc(NetworkConnection owner, PlayerState s)
         {
-            // Remove old snapshots
-            var i = _pending.FindLastIndex(x => x.Sequence == s.LastSequence);
-            if (i >= 0)
+            var confirmedIndex = _pending.FindLastIndex(x => x.Sequence == s.LastSequence);
+
+            if (_isHost) // Never reached in theory
             {
-                _pending.RemoveRange(0, i + 1);
+                var hostIndex = confirmedIndex;
+                if (hostIndex >= 0)
+                {
+                    _pending.RemoveRange(0, hostIndex + 1);
+                }
+
+                return;
             }
 
-            // We have already run a simulation on the host
-            if (_isHost)
+
+            // If there is no such input anymore (ACK is too old), ignore it
+            if (confirmedIndex < 0)
             {
                 return;
             }
 
-            // Correction on owner's client
-            var kinematicState = _rider.GetState();
-            var positionError = s.Position - kinematicState.Position;
+            var currentState = _rider.GetState();
+
+            // Roll back to the server state
+            _rider.SetState(new KinematicState
+            {
+                Position = s.Position,
+                Velocity = s.Velocity,
+                Yaw = s.Yaw
+            });
+
+            // Replay all inputs after confirmed
+            for (int i = confirmedIndex + 1, ilen = _pending.Count; i < ilen; ++i)
+            {
+                PredictLocal(_pending[i]);
+            }
+
+            var replayedState = _rider.GetState();
+
+            // Calculate the error between the current and replayed
+            var positionError = currentState.Position - replayedState.Position;
             var sqrError = positionError.sqrMagnitude;
 
             var nudgeSqrError = _nudgeThreshold * _nudgeThreshold;
             var snapSqrError = _snapThreshold * _snapThreshold;
 
-            // Snap state
+            // If the error is large, we apply correction
             if (sqrError >= snapSqrError)
             {
-                _rider.SetState(new KinematicState
-                {
-                    Position = s.Position,
-                    Velocity = s.Velocity,
-                    Yaw = s.Yaw
-                });
+                // The correct state is already set after replay
+#if UNITY_EDITOR
+                Debug.Log($"[Reconciliation] SNAP error: {Mathf.Sqrt(sqrError):F3}m");
+#endif
             }
-            // Nudge
             else if (sqrError >= nudgeSqrError)
             {
-                kinematicState.Position += positionError * _nudgePosFactor;
-                kinematicState.Velocity = Vector3.Lerp(kinematicState.Velocity, s.Velocity, _nudgeVelFactor);
+                // Smoothly pull to the correct position
+                var correctedState = replayedState;
+                correctedState.Position =
+                    Vector3.Lerp(replayedState.Position, currentState.Position, 1f - _nudgePosFactor);
+                correctedState.Velocity =
+                    Vector3.Lerp(replayedState.Velocity, currentState.Velocity, 1f - _nudgeVelFactor);
 
-                var yawErr = Mathf.DeltaAngle(kinematicState.Yaw, s.Yaw);
-                kinematicState.Yaw += yawErr * _nudgeYawFactor;
+                var yawErr = Mathf.DeltaAngle(replayedState.Yaw, currentState.Yaw);
+                correctedState.Yaw = replayedState.Yaw + yawErr * (1f - _nudgeYawFactor);
 
-                _rider.SetState(kinematicState);
+                _rider.SetState(correctedState);
+
+                Debug.Log($"[Reconciliation] NUDGE error: {Mathf.Sqrt(sqrError):F3}m");
             }
-
-            // Or do nothing if error is too small 
-            // Just predict locally
-            foreach (var inputSnapshot in _pending)
+            else
             {
-                PredictLocal(in inputSnapshot);
+                // Leave the replayed state as is
             }
+
+            // Remove confirmed inputs
+            _pending.RemoveRange(0, confirmedIndex + 1);
+            _lastSentIndex = 0;
         }
     }
 }
