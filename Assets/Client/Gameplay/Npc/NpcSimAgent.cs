@@ -1,5 +1,4 @@
-﻿using System;
-using Client.Gameplay.Character;
+﻿using Client.Gameplay.Character;
 using Client.Gameplay.Health;
 using Client.Gameplay.Map;
 using Client.Gameplay.Movement;
@@ -28,12 +27,6 @@ namespace Client.Gameplay.Npc
             _tr = transform;
             _characterContainer = Ioc.Instance.Resolve<ICharacterContainer>();
             _gameplayContext = GameplayContextBehaviour.Instance;
-        }
-
-        private void FixedUpdate()
-        {
-            _rider.ApplyMovementXZ();
-            _rider.ApplyRotationY();
         }
 
         public void Init(in NpcSpawnData data)
@@ -69,7 +62,7 @@ namespace Client.Gameplay.Npc
                 }
             }
 
-            _rider.ApplyInputStep(direction, delta);
+            _rider.SimulateStep(direction, delta);
         }
 
         public NpcState ExtractState(uint tick)

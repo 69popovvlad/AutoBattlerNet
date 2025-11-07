@@ -8,16 +8,16 @@ namespace Client.Gameplay.Projectile
 {
     public class ProjectileSimAgent : MonoBehaviour, IChunkSimEntity, IStateProvider<ProjectileState>
     {
-        [SerializeField] private SimpleRider _rider;
+        [SerializeField] private SimpleRider   _rider;
         [SerializeField] private TrailRenderer _trailRenderer;
-        [SerializeField] private float _autoDestroyDelay = 3f;
+        [SerializeField] private float         _autoDestroyDelay = 3f;
 
-        private Transform _tr;
-        private Transform _target;
-        private Vector2 _initDirection;
+        private Transform                _tr;
+        private Transform                _target;
+        private Vector2                  _initDirection;
         private GameplayContextBehaviour _gameplayContext;
-        private int _damage;
-        private float _leftToDestroy;
+        private int                      _damage;
+        private float                    _leftToDestroy;
 
         public uint Id { get; private set; }
         public bool IsActive => gameObject.activeInHierarchy;
@@ -30,12 +30,6 @@ namespace Client.Gameplay.Projectile
             _tr = transform;
             _gameplayContext = GameplayContextBehaviour.Instance;
             _leftToDestroy = _autoDestroyDelay;
-        }
-        
-        private void FixedUpdate()
-        {
-            _rider.ApplyMovementXZ();
-            _rider.ApplyRotationY();
         }
 
         public void Init(in ProjectileSpawnData data, ProjectileContext context)
@@ -78,7 +72,7 @@ namespace Client.Gameplay.Projectile
             _trailRenderer.Clear();
             _initDirection = Vector2.zero;
             _leftToDestroy = _autoDestroyDelay;
-            _rider.ApplyInputStep(_initDirection, 1f);
+            _rider.SimulateStep(_initDirection, 1f);
             _rider.Reset();
         }
 
@@ -90,7 +84,7 @@ namespace Client.Gameplay.Projectile
                 direction = CalculateDirection(_target);
             }
 
-            _rider.ApplyInputStep(direction, delta);
+            _rider.SimulateStep(direction, delta);
 
             _leftToDestroy -= delta;
             if (_leftToDestroy <= 0)
