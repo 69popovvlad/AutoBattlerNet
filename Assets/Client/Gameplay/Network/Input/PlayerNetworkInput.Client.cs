@@ -34,11 +34,11 @@ namespace Client.Gameplay.Network.Input
                 if (hostIndex >= 0)
                 {
                     _pending.RemoveRange(0, hostIndex + 1);
+                    _lastSentIndex = 0;
                 }
 
                 return;
             }
-
 
             // If there is no such input anymore (ACK is too old), ignore it
             if (confirmedIndex < 0)

@@ -41,13 +41,9 @@ namespace Client.Gameplay.Network.Input
 
         private void FixedUpdate()
         {
-            UpdateLookAt();
-            
-            if (!IsOwner || _isHost)
+            if (IsOwner || _isHost)
             {
-                var deltaTime = Time.fixedDeltaTime;
-                _rider.ApplyRotationY(deltaTime);
-                _rider.ApplyMovementXZ(deltaTime);
+                UpdateLookAt();
             }
         }
 
@@ -68,7 +64,10 @@ namespace Client.Gameplay.Network.Input
                     Flags = flags
                 };
 
-                PredictLocal(in inputSnapshot);
+                if (!_isHost)
+                {
+                    PredictLocal(in inputSnapshot);
+                }
 
                 _pending.Add(inputSnapshot);
                 _accumLocal -= SIM_DT;
@@ -86,24 +85,8 @@ namespace Client.Gameplay.Network.Input
                 return;
             }
 
-            if (!_isHost)
-            {
-                var toSend = _pending.GetRange(_lastSentIndex, _pending.Count - _lastSentIndex);
-                SubmitInputServerRpc(toSend.ToArray());
-            }
-            else
-            {
-                var kinematicState = _rider.GetState();
-                var lastState = new PlayerState
-                {
-                    LastSequence = _pending[^1].Sequence,
-                    Position = kinematicState.Position,
-                    Velocity = kinematicState.Velocity,
-                    Yaw = kinematicState.Yaw
-                };
-
-                StateForObserversRpc(lastState);
-            }
+            var toSend = _pending.GetRange(_lastSentIndex, _pending.Count - _lastSentIndex);
+            SubmitInputServerRpc(toSend.ToArray());
 
             if (_pending.Count > MAX_PENDING_INPUTS)
             {

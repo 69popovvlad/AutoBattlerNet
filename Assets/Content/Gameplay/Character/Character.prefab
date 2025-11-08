@@ -286,6 +286,8 @@ MonoBehaviour:
   _nudgeYawFactor: 0.5
   _rider: {fileID: 4172380243529805847}
   _sendingTargetFPS: 30
+  _observerBufferSize: 6
+  _observerInterpolationDelay: 0.05
 --- !u!114 &3629230913834095779
 MonoBehaviour:
   m_ObjectHideFlags: 0
