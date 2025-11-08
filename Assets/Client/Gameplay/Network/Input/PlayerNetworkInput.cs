@@ -130,7 +130,6 @@ namespace Client.Gameplay.Network.Input
             }
             else
             {
-                Debug.Log("NO TARGET");
                 _rider.SetLookTarget(null);
             }
         }

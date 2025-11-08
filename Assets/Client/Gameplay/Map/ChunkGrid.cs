@@ -6,11 +6,11 @@ namespace Client.Gameplay.Map
 {
     public class ChunkGrid
     {
-        private readonly int _width;
-        private readonly int _height;
+        private readonly int   _width;
+        private readonly int   _height;
         private readonly float _chunkSize;
-        private readonly int _minX;
-        private readonly int _minZ;
+        private readonly int   _minX;
+        private readonly int   _minZ;
 
         /// Chunks array with entities list in it
         private readonly List<uint>[] _chunks;
@@ -20,6 +20,8 @@ namespace Client.Gameplay.Map
 
         private readonly float _originWorldX;
         private readonly float _originWorldZ;
+
+        public float ChunkSize => _chunkSize;
 
         public ChunkGrid(int width, int height, float chunkSize, int minX = 0, int minZ = 0)
         {
