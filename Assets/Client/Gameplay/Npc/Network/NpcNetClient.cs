@@ -6,8 +6,18 @@ namespace Client.Gameplay.Npc.Network
     public class NpcNetClient : MonoBehaviour
     {
         private readonly Dictionary<uint, NpcGhost> _byId = new();
+        private          NpcAuthority               _npcAuthority;
 
-        public void Register(uint id, NpcGhost ghost) => _byId[id] = ghost;
+        private void Start()
+        {
+            _npcAuthority = GameplayContextBehaviour.Instance.NpcAuthority;
+        }
+
+        public void Register(uint id, NpcGhost ghost)
+        {
+            _byId[id] = ghost;
+            _npcAuthority.ChunkGrid.TryAddEntityAtWorld(id, ghost.transform.position);
+        }
 
         public void Unregister(uint id)
         {
@@ -28,6 +38,7 @@ namespace Client.Gameplay.Npc.Network
                 if (_byId.TryGetValue(state.Id, out var ghost) && ghost)
                 {
                     ghost.ApplyServerState(state);
+                    _npcAuthority.ChunkGrid.TryMoveEntityAtWorld(state.Id, ghost.transform.position);
                 }
             }
         }
