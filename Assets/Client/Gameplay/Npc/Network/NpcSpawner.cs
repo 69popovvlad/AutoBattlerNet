@@ -138,5 +138,22 @@ namespace Client.Gameplay.Npc.Network
 
             _pool.Return(npc);
         }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void SpawnMoreEnemies(int count = 50)
+        {
+            if (_isHost)
+            {
+                var a = 0;
+            }
+            
+            
+            _npcLimit = Mathf.Max(_npcLimit, _pool.SpawnedCount + count);
+            var toSpawnCount = _npcLimit - _pool.SpawnedCount;
+            for (var i = 0; i < toSpawnCount; ++i)
+            {
+                SpawnRandomNpc();
+            }
+        }
     }
 }
